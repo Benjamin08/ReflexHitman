@@ -11,6 +11,7 @@ TagManager:
   - CameraLookPoint
   - GameHandler
   - EnemyData
+  - ParticleSystem
   layers:
   - Default
   - TransparentFX

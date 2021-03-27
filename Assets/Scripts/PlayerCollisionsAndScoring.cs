@@ -47,6 +47,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             //HitEnemyEvent.Invoke(this, new HitEnemyEventArgs { enemyHit = collision.gameObject });
+            gameHandler.EnemyDeathParticles(collision.transform.position);
             collision.gameObject.SetActive(false);
             for(counter = 0; counter < enemyData.enemyList.Count; counter++)
             {
@@ -60,7 +61,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
            
             if(enemyData.deadCount.Equals(enemyData.enemyList.Count))
             {
-                gameHandler.NextLevel();
+                FunctionTimer.Create(() => gameHandler.NextLevel(), 1f);
             }
         
            

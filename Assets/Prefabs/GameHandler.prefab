@@ -43,11 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4662096f5d3fee409b4605789524187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystem: {fileID: 0}
+  numberOfSwipesText: {fileID: 0}
+  levelCompleteText: {fileID: 0}
   swipesAllowedThisLevel: 0
   currentLevel: 0
   swipesLeft: 0
   levelPassed: 0
   player: {fileID: 0}
   levelList:
-  - {fileID: 0}
-  currentLevelData: {fileID: 0}
+  - {fileID: 11400000, guid: 1ac019cc7d9966240a1e9e2745c4cbaa, type: 2}
+  - {fileID: 11400000, guid: 14cad331a2d7663488b2ce14e747ac4f, type: 2}
+  - {fileID: 11400000, guid: 052181464eece0a47a185dc04dae702b, type: 2}
+  levelTransitioner: {fileID: 0}
+  enemyData: {fileID: 0}
