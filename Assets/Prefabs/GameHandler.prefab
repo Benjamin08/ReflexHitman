@@ -55,5 +55,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1ac019cc7d9966240a1e9e2745c4cbaa, type: 2}
   - {fileID: 11400000, guid: 14cad331a2d7663488b2ce14e747ac4f, type: 2}
   - {fileID: 11400000, guid: 052181464eece0a47a185dc04dae702b, type: 2}
+  - {fileID: 11400000, guid: 2756875767eb39a4eb2c3e30ef4412ca, type: 2}
   levelTransitioner: {fileID: 0}
   enemyData: {fileID: 0}

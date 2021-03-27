@@ -47,13 +47,16 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             //HitEnemyEvent.Invoke(this, new HitEnemyEventArgs { enemyHit = collision.gameObject });
-            gameHandler.EnemyDeathParticles(collision.transform.position);
-            collision.gameObject.SetActive(false);
+
+            
+           
             for(counter = 0; counter < enemyData.enemyList.Count; counter++)
             {
                if(collision.gameObject.Equals(enemyData.enemyList[counter]))
                 {
-                    enemyData.enemyList[counter].SetActive(false);
+                    collision.GetComponent<Enemy>().particleSystem.Play();
+                    enemyData.enemyList[counter].GetComponent<SpriteRenderer>().enabled = false;
+                    enemyData.enemyList[counter].GetComponent<Collider2D>().enabled = false;
                     enemyData.deadCount++;
                 }
             }

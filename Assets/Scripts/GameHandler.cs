@@ -9,8 +9,7 @@ using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
-    
-    public ParticleSystem particleSystem;
+
     public Text numberOfSwipesText;
     public Text levelCompleteText;
 
@@ -58,24 +57,18 @@ public class GameHandler : MonoBehaviour
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
         levelCompleteText.text = "Level Complete: " + levelPassed;
 
+        foreach (GameObject enemy in enemyArray)
+        {
+            enemy.SetActive(true);
+        }
 
         FunctionTimer.Create(() => player.GetComponent<PlayerCollisionsAndScoring>().SetDrag(1f), .3f);
 
     }
 
-    public void EnemyDeathParticles(Vector3 enemyPosition)
-    {
-        particleSystem.transform.position = enemyPosition;
-        
-    }
-
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-
-        particleSystem = GameObject.FindGameObjectWithTag("ParticleSystem").GetComponent<ParticleSystem>();
-
-        ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
 
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>();
 
