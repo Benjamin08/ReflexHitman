@@ -13,8 +13,6 @@ public class GameHandler : MonoBehaviour
     public Text numberOfSwipesText;
     public Text levelCompleteText;
 
-    public int swipesAllowedThisLevel;
-
     public int currentLevel = 0;
 
     public int swipesLeft;
@@ -49,10 +47,8 @@ public class GameHandler : MonoBehaviour
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<Transform>().position = playerSpawn.position;
 
-        Debug.Log("swiptes allowed this level: " + swipesAllowedThisLevel);
 
-        swipesLeft = swipesAllowedThisLevel;
-        Debug.Log("swipes now: " + swipesLeft);
+        swipesLeft = levelList[currentLevel].maxNumberOfSwipes;
 
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
         levelCompleteText.text = "Level Complete: " + levelPassed;
@@ -83,10 +79,8 @@ public class GameHandler : MonoBehaviour
         CMDebug.ButtonUI(new Vector2(300, -500), "Reset", () => ResetGame());
 
         CMDebug.ButtonUI(new Vector2(300, 0), "Next Level", () => NextLevel());
-
-        swipesAllowedThisLevel = levelList[currentLevel].maxNumberOfSwipes;
         
-        swipesLeft = swipesAllowedThisLevel;
+        swipesLeft = levelList[currentLevel].maxNumberOfSwipes;
 
         numberOfSwipesText = GameObject.Find("Number Of Swipes").GetComponent<Text>();
 
@@ -138,10 +132,17 @@ public class GameHandler : MonoBehaviour
 
     }
 
-    private void EndOfSwipe(object sender, EventArgs e)
+    public void EndOfSwipe(object sender, EventArgs e)
     {
         swipesLeft--;
-       //numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft; 
+        numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft.ToString();
+       
+        Debug.Log("end of swipe");
+       // need to access playerCollisionAndScoring but nick is currently editing this. so for now check for -1 instead of 0 && player.rb.velocity...
+       if(swipesLeft == -1)
+       {
+           levelTransitioner.ReloadLevel();
+       }
     }
 
     private void Update()

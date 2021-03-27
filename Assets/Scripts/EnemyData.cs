@@ -13,7 +13,6 @@ public class EnemyData : MonoBehaviour
     public int deadCount = 0;
 
     public GameHandler gameHandler;
-
  
 
     // Start is called before the first frame update
@@ -25,8 +24,18 @@ public class EnemyData : MonoBehaviour
 
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
         gameHandler.player = GameObject.FindGameObjectWithTag("Player");
+
+
+        if(gameHandler.currentLevel != 0)
+        {
+            gameHandler.player.GetComponent<TouchTwo>().OnSwipeDone += gameHandler.EndOfSwipe;
+        }
+        
+
         gameHandler.enemyData = this;
         gameHandler.levelCompleteText = GameObject.Find("Level Complete Text").GetComponent<Text>();
+        gameHandler.swipesLeft = gameHandler.levelList[gameHandler.currentLevel].maxNumberOfSwipes;
+
         gameHandler.numberOfSwipesText = GameObject.Find("Number Of Swipes").GetComponent<Text>();
         gameHandler.levelTransitioner = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
         gameHandler.SetText();

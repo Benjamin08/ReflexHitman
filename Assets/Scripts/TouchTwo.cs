@@ -29,8 +29,7 @@ public class TouchTwo : MonoBehaviour
     private void SwipeDone(object sender, EventArgs e)
     {
         numberOfTimesTouched++;
-        playerCollisionScore.gameHandler.swipesLeft--;
-        playerCollisionScore.gameHandler.numberOfSwipesText.text = "Number Of Swipes: " + playerCollisionScore.gameHandler.swipesLeft.ToString();
+        
         GetComponent<Rigidbody2D>().AddForce(-direction / timeInterval * throwForce);
     }    
 
