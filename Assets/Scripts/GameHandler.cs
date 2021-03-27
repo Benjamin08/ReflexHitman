@@ -46,7 +46,7 @@ public class GameHandler : MonoBehaviour
         player.GetComponent<Rigidbody2D>().drag = 2000f;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<Transform>().position = playerSpawn.position;
-
+        
 
         swipesLeft = levelList[currentLevel].maxNumberOfSwipes;
 
@@ -142,6 +142,7 @@ public class GameHandler : MonoBehaviour
        if(swipesLeft == -1)
        {
            levelTransitioner.ReloadLevel();
+           
        }
     }
 

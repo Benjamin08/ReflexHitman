@@ -60,6 +60,27 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
                     collision.GetComponent<Enemy>().particleSystem.Play();
                     enemyData.enemyList[counter].GetComponent<SpriteRenderer>().enabled = false;
                     enemyData.enemyList[counter].GetComponent<Collider2D>().enabled = false;
+
+                    int randNumber = UnityEngine.Random.Range(0,2);
+                    switch(randNumber)
+                    {
+                        case 0:
+                            SoundManager.PlaySound(SoundManager.Sound.enemyHurt1, collision.transform.position);
+                        break;
+
+                        case 1:
+                            SoundManager.PlaySound(SoundManager.Sound.enemyHurt2, collision.transform.position);
+                        break;
+
+                        case 2:
+                            SoundManager.PlaySound(SoundManager.Sound.enemyHurt3, collision.transform.position);
+                        break;
+
+                        default:
+
+                        break;
+                    }
+                    
                     enemyData.deadCount++;
                 }
             }
