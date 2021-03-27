@@ -46,6 +46,7 @@ public class GameHandler : MonoBehaviour
         player.GetComponent<Rigidbody2D>().drag = 2000f;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<Transform>().position = playerSpawn.position;
+        player.GetComponent<TouchTwo>().OnSwipeDone += EndOfSwipe;
 
 
         swipesLeft = levelList[currentLevel].maxNumberOfSwipes;
@@ -142,7 +143,17 @@ public class GameHandler : MonoBehaviour
        if(swipesLeft == -1)
        {
            levelTransitioner.ReloadLevel();
-       }
+            if (currentLevel == 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    public void AddSwipe(int swipesAdded)
+    {
+        swipesLeft += swipesAdded;
+        numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft.ToString();
     }
 
     private void Update()

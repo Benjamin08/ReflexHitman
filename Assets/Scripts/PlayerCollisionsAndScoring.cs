@@ -83,6 +83,12 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
 
             transform.position = playerSpawn.transform.position;
         }
+
+        if(collision.gameObject.CompareTag("SwipePowerup"))
+        {
+            Destroy(collision.gameObject);
+            gameHandler.AddSwipe(1);
+        }
     }
 
 

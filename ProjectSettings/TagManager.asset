@@ -12,6 +12,7 @@ TagManager:
   - GameHandler
   - EnemyData
   - ParticleSystem
+  - SwipePowerup
   layers:
   - Default
   - TransparentFX
