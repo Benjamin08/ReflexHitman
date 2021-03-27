@@ -22,6 +22,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
 
     public GameHandler gameHandler;
 
+    public CameraShake camShake;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemyData = GameObject.Find("EnemyData").GetComponent<EnemyData>();
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
+        camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -48,7 +51,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         {
             //HitEnemyEvent.Invoke(this, new HitEnemyEventArgs { enemyHit = collision.gameObject });
 
-            
+            StartCoroutine(camShake.Shake(.2f, .4f));
            
             for(counter = 0; counter < enemyData.enemyList.Count; counter++)
             {
