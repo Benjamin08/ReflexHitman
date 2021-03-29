@@ -20,6 +20,7 @@ public class TouchTwo : MonoBehaviour
 
     private float swipeLength = 0;
 
+    public bool endOfTouch = false;
     private void Start()
     {
         playerCollisionScore = GetComponent<PlayerCollisionsAndScoring>();
@@ -35,20 +36,21 @@ public class TouchTwo : MonoBehaviour
 
     void Update()
     {
-        if(Input.touchCount > 0)
+        if(Input.touchCount > 0) 
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
+                endOfTouch = false;
                 touchTimeStart = Time.time;
                 startPos = Input.GetTouch(0).position;
-                playerCollisionScore.SetDrag(1f);
+                playerCollisionScore.SetDrag(3f);
             }
             if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
+                playerCollisionScore.isMoving = true;
+                endOfTouch = true;
                 endPos = Input.GetTouch(0).position;
                 direction = startPos - endPos;
-
-
 
                 touchTimeFinish = Time.time;
                 timeInterval = touchTimeFinish - touchTimeStart;
@@ -56,9 +58,9 @@ public class TouchTwo : MonoBehaviour
 
                 swipeLength = Vector2.Distance(startPos, endPos);
 
-                Debug.Log("swipeLength: " + swipeLength);
+                
                
-                if(swipeLength > 20)
+                if(swipeLength > 20 && playerCollisionScore.gameHandler.swipesLeft > 0)
                 {
                     OnSwipeDone?.Invoke(this, EventArgs.Empty);         // If our event is not null, then we invoke the event
                 }

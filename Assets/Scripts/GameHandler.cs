@@ -29,7 +29,7 @@ public class GameHandler : MonoBehaviour
     public GameObject player;
 
     private TouchTwo touchInput;
-    private PlayerCollisionsAndScoring playerCollisionAndScoring;
+    public PlayerCollisionsAndScoring playerCollisionAndScoring;
 
    // public List<GameObject>EnemyList;
     private GameObject[] enemyArray;
@@ -106,11 +106,10 @@ public class GameHandler : MonoBehaviour
 
     public void NextLevel()
     {
-       
+       Debug.Log("Next Level");
         levelTransitioner.LoadNextLevel();
         currentLevel++;
         swipesLeft = levelList[currentLevel].maxNumberOfSwipes;
-        levelPassed = false;
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
         levelCompleteText.text = "Level Complete: " + levelPassed;
 
@@ -138,16 +137,6 @@ public class GameHandler : MonoBehaviour
         swipesLeft--;
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft.ToString();
        
-        Debug.Log("end of swipe");
-       // need to access playerCollisionAndScoring but nick is currently editing this. so for now check for -1 instead of 0 && player.rb.velocity...
-       if(swipesLeft == -1)
-       {
-           levelTransitioner.ReloadLevel();
-            if (currentLevel == 0)
-            {
-                Destroy(gameObject);
-            }
-        }
     }
 
     public void AddSwipe(int swipesAdded)
@@ -158,7 +147,17 @@ public class GameHandler : MonoBehaviour
 
     private void Update()
     {
-        
+
+        // bugged on second level thinks player is not moving the frame I swipe
+        if(touchInput.endOfTouch && swipesLeft <= 0 && playerCollisionAndScoring.rb.IsSleeping() && !levelPassed)
+        {
+            Debug.Log("0 swipes left");
+            levelTransitioner.ReloadLevel();
+            if (currentLevel == 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
 }

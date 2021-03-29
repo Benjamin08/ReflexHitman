@@ -8,7 +8,7 @@ using System;
 public class PlayerCollisionsAndScoring : MonoBehaviour
 {
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     public bool hit = false;
 
     private int counter = 0;
@@ -23,6 +23,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     public GameHandler gameHandler;
 
     public CameraShake camShake;
+
+    public bool isMoving = true;
 
     // Start is called before the first frame update
     void Start()
@@ -40,9 +42,15 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         if(hit)
         {
             rb.drag = 2000f;
-            FunctionTimer.Create(() => SetDrag(1f), 2f);
+            FunctionTimer.Create(() => SetDrag(10f), 2f);
             hit = false;
         }
+
+        if(rb.velocity.sqrMagnitude < .25f)
+        {
+            isMoving = false;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -88,6 +96,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
            
             if(enemyData.deadCount.Equals(enemyData.enemyList.Count))
             {
+                gameHandler.levelPassed = true;
+                gameHandler.SetText();
                 FunctionTimer.Create(() => gameHandler.NextLevel(), 1f);
             }
         
@@ -100,7 +110,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         if(collision.gameObject.CompareTag("Toxic Gas"))
         {
             rb.drag = 2000f;
-            FunctionTimer.Create(() => SetDrag(1f), 2f);
+            FunctionTimer.Create(() => SetDrag(10f), 2f);
 
             transform.position = playerSpawn.transform.position;
         }

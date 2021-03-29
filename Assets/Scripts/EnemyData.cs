@@ -24,6 +24,17 @@ public class EnemyData : MonoBehaviour
 
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
         gameHandler.player = GameObject.FindGameObjectWithTag("Player");
+        gameHandler.levelTransitioner = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
+        gameHandler.playerCollisionAndScoring = gameHandler.player.GetComponent<PlayerCollisionsAndScoring>();
+        gameHandler.levelCompleteText = GameObject.Find("Level Complete Text").GetComponent<Text>();
+        gameHandler.numberOfSwipesText = GameObject.Find("Number Of Swipes").GetComponent<Text>();
+
+
+        gameHandler.swipesLeft = gameHandler.levelList[gameHandler.currentLevel].maxNumberOfSwipes;
+        gameHandler.swipesLeft = gameHandler.levelList[gameHandler.currentLevel].maxNumberOfSwipes;
+        gameHandler.levelPassed = false;
+
+        gameHandler.enemyData = this;
 
 
         if(gameHandler.currentLevel != 0)
@@ -31,13 +42,6 @@ public class EnemyData : MonoBehaviour
             gameHandler.player.GetComponent<TouchTwo>().OnSwipeDone += gameHandler.EndOfSwipe;
         }
         
-
-        gameHandler.enemyData = this;
-        gameHandler.levelCompleteText = GameObject.Find("Level Complete Text").GetComponent<Text>();
-        gameHandler.swipesLeft = gameHandler.levelList[gameHandler.currentLevel].maxNumberOfSwipes;
-
-        gameHandler.numberOfSwipesText = GameObject.Find("Number Of Swipes").GetComponent<Text>();
-        gameHandler.levelTransitioner = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
         gameHandler.SetText();
     }
 

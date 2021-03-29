@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3429799739704113874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfTimesTouched: 0
-  throwForce: 0.687
+  throwForce: 1
+  endOfTouch: 0
 --- !u!114 &3429799739704113869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +140,7 @@ MonoBehaviour:
   enemyData: {fileID: 0}
   gameHandler: {fileID: 0}
   camShake: {fileID: 0}
+  isMoving: 0
 --- !u!58 &3429799739704113871
 CircleCollider2D:
   m_ObjectHideFlags: 0
