@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7614905414397687298}
-  - component: {fileID: 7614905414397687297}
+  - component: {fileID: 8055812306495065507}
   m_Layer: 0
-  m_Name: EnemyData
-  m_TagString: EnemyData
+  m_Name: loadingLevelData
+  m_TagString: loadLevelData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7614905414397687297
+--- !u!114 &8055812306495065507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,9 +40,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7614905414397687299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a572c091a8de9a478699f9b7a160688, type: 3}
+  m_Script: {fileID: 11500000, guid: 05f67833d9f8a514791c35525bb1826c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList: []
-  deadCount: 0
-  gameHandler: {fileID: 0}

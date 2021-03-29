@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
-public class EnemyData : MonoBehaviour
+public class LoadLevelData : MonoBehaviour
 {
-
+   
     public List<GameObject> enemyList;
     public GameObject[] enemyArray;
 
@@ -35,7 +34,7 @@ public class EnemyData : MonoBehaviour
        
         gameHandler.levelPassed = false;
 
-        //gameHandler.enemyData = this;
+        gameHandler.loadLevelData = this;
 
 
         if(gameHandler.currentLevel != 0)

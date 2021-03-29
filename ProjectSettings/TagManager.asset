@@ -13,6 +13,7 @@ TagManager:
   - EnemyData
   - ParticleSystem
   - SwipePowerup
+  - loadLevelData
   layers:
   - Default
   - TransparentFX

@@ -11,8 +11,13 @@ public class Door_Control : MonoBehaviour
     private Vector2 startPos2;
     private float endPos1;
     private float endPos2;
-    [SerializeField]
-    private float speed;
+
+    [Range(.001f, .1f)]
+    public float speed;
+
+    [Range(1f,3f)]
+    public float doorMoveAmount;
+
     [SerializeField]
     private bool horizontal = true;
     private bool open = false;
@@ -63,14 +68,14 @@ public class Door_Control : MonoBehaviour
         {
             if (horizontal)
             {
-                endPos1 = startPos1.x - 1f;
-                endPos2 = startPos2.x + 1f;
+                endPos1 = startPos1.x - doorMoveAmount;
+                endPos2 = startPos2.x + doorMoveAmount;
                 velocity = new Vector2(speed, 0);
             }
             else
             {
-                endPos1 = startPos1.y - 1f;
-                endPos2 = startPos2.y + 1f;
+                endPos1 = startPos1.y - doorMoveAmount;
+                endPos2 = startPos2.y + doorMoveAmount;
                 velocity = new Vector2(0, speed);
             }
             moving = true;

@@ -1172,6 +1172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: loadingLevelData
       objectReference: {fileID: 0}
+    - target: {fileID: 8055812306495065507, guid: c34b3cfc22b99b74ea30d6bdf510fb1f, type: 3}
+      propertyPath: thisLevelData
+      value: 
+      objectReference: {fileID: 11400000, guid: 998966fd595d701458767f475808e2bf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c34b3cfc22b99b74ea30d6bdf510fb1f, type: 3}
 --- !u!1001 &7826563960751617816

@@ -10,6 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e90517ae21f75c4da370c8012c77b5e, type: 3}
-  m_Name: Level 4
+  m_Name: 1_2
   m_EditorClassIdentifier: 
-  maxNumberOfSwipes: 1
+  maxNumberOfSwipes: 6
+  oneStarSwipeAmount: 6
+  twoStarSwipeAmount: 5
+  threeStarSwipeAmount: 4
+  levelPassed: 0

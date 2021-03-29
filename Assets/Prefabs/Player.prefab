@@ -138,8 +138,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   hit: 0
   timer: 3
-  dragAmount: 24.9
-  enemyData: {fileID: 0}
+  dragAmount: 5.7
+  loadLevelData: {fileID: 0}
   gameHandler: {fileID: 0}
   camShake: {fileID: 0}
   isMoving: 0

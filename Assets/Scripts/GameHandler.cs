@@ -33,13 +33,11 @@ public class GameHandler : MonoBehaviour
 
    // public List<GameObject>EnemyList;
     private GameObject[] enemyArray;
-    public LevelData[] levelList;
+    //public LevelData[] levelList;
 
     public LevelLoader levelTransitioner;
 
-    //public LevelData currentLevelData;
-
-    public EnemyData enemyData;
+    public LoadLevelData loadLevelData;
 
     public void ResetGame()
     {
@@ -49,7 +47,7 @@ public class GameHandler : MonoBehaviour
         player.GetComponent<TouchTwo>().OnSwipeDone += EndOfSwipe;
 
 
-        swipesLeft = levelList[currentLevel].maxNumberOfSwipes;
+        swipesLeft = loadLevelData.thisLevelData.GetMaxNumberOfSwipes();
 
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
         levelCompleteText.text = "Level Complete: " + levelPassed;
@@ -59,7 +57,7 @@ public class GameHandler : MonoBehaviour
             enemy.SetActive(true);
         }
 
-        FunctionTimer.Create(() => player.GetComponent<PlayerCollisionsAndScoring>().SetDrag(1f), .3f);
+        FunctionTimer.Create(() => player.GetComponent<PlayerCollisionsAndScoring>().SetDrag(playerCollisionAndScoring.dragAmount), .3f);
 
     }
 
@@ -71,17 +69,18 @@ public class GameHandler : MonoBehaviour
 
         levelTransitioner = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
 
-        enemyData = GameObject.FindGameObjectWithTag("EnemyData").GetComponent<EnemyData>();
+        loadLevelData = GameObject.FindGameObjectWithTag("loadLevelData").GetComponent<LoadLevelData>();
 
-        enemyArray = enemyData.enemyArray;
+        enemyArray = loadLevelData.enemyArray;
 
         //camera.Setup(() => cameraLookPoint.position);
 
         CMDebug.ButtonUI(new Vector2(300, -500), "Reset", () => ResetGame());
 
         CMDebug.ButtonUI(new Vector2(300, 0), "Next Level", () => NextLevel());
-        
-        swipesLeft = levelList[currentLevel].maxNumberOfSwipes;
+    
+
+        swipesLeft = loadLevelData.thisLevelData.GetMaxNumberOfSwipes();
 
         numberOfSwipesText = GameObject.Find("Number Of Swipes").GetComponent<Text>();
 
@@ -106,17 +105,20 @@ public class GameHandler : MonoBehaviour
 
     public void NextLevel()
     {
-       Debug.Log("Next Level");
+        Debug.Log("Next Level");
         levelTransitioner.LoadNextLevel();
+        
         currentLevel++;
-        swipesLeft = levelList[currentLevel].maxNumberOfSwipes;
+        
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
         levelCompleteText.text = "Level Complete: " + levelPassed;
 
-       // enemyData = GameObject.FindGameObjectWithTag("EnemyData").GetComponent<EnemyData>();
-       // player = GameObject.FindGameObjectWithTag("Player");
-
         FillEnemyArray();
+    }
+
+    private void SaveLevelOutcome()
+    {
+        //levelList[currentLevel]
     }
 
     public void SetText()
@@ -128,7 +130,7 @@ public class GameHandler : MonoBehaviour
     public void FillEnemyArray()
     {
         Array.Clear(enemyArray,0,enemyArray.Length);
-        enemyArray = enemyData.enemyArray;
+        enemyArray = loadLevelData.enemyArray;
 
     }
 

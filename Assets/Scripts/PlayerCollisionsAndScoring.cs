@@ -16,12 +16,12 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     Vector3 holdVelocity;
     public float timer;
 
-    [Range(10f, 100f)]
+    [Range(.1f, 100f)]
     public float dragAmount = 10f;
 
     private Transform playerSpawn;
 
-    public EnemyData enemyData;
+    public LoadLevelData loadLevelData;
 
     public GameHandler gameHandler;
 
@@ -35,7 +35,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     {
         playerSpawn = GameObject.FindGameObjectWithTag("Player Spawn").transform;
         rb = GetComponent<Rigidbody2D>();
-        enemyData = GameObject.Find("EnemyData").GetComponent<EnemyData>();
+        loadLevelData = GameObject.FindGameObjectWithTag("loadLevelData").GetComponent<LoadLevelData>();
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
         camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
     }
@@ -65,13 +65,13 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
 
             StartCoroutine(camShake.Shake(.2f, .4f));
            
-            for(counter = 0; counter < enemyData.enemyList.Count; counter++)
+            for(counter = 0; counter < loadLevelData.enemyList.Count; counter++)
             {
-               if(collision.gameObject.Equals(enemyData.enemyList[counter]))
+               if(collision.gameObject.Equals(loadLevelData.enemyList[counter]))
                 {
                     collision.GetComponent<Enemy>().particleSystem.Play();
-                    enemyData.enemyList[counter].GetComponent<SpriteRenderer>().enabled = false;
-                    enemyData.enemyList[counter].GetComponent<Collider2D>().enabled = false;
+                    loadLevelData.enemyList[counter].GetComponent<SpriteRenderer>().enabled = false;
+                    loadLevelData.enemyList[counter].GetComponent<Collider2D>().enabled = false;
 
                     int randNumber = UnityEngine.Random.Range(0,2);
                     switch(randNumber)
@@ -93,12 +93,12 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
                         break;
                     }
                     
-                    enemyData.deadCount++;
+                    loadLevelData.deadCount++;
                 }
             }
            
            
-            if(enemyData.deadCount.Equals(enemyData.enemyList.Count))
+            if(loadLevelData.deadCount.Equals(loadLevelData.enemyList.Count))
             {
                 gameHandler.levelPassed = true;
                 gameHandler.SetText();

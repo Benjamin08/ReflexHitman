@@ -43,7 +43,7 @@ public class TouchTwo : MonoBehaviour
                 endOfTouch = false;
                 touchTimeStart = Time.time;
                 startPos = Input.GetTouch(0).position;
-                playerCollisionScore.SetDrag(3f);
+                playerCollisionScore.SetDrag(playerCollisionScore.dragAmount);
             }
             if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
