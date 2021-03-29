@@ -16,6 +16,9 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     Vector3 holdVelocity;
     public float timer;
 
+    [Range(10f, 100f)]
+    public float dragAmount = 10f;
+
     private Transform playerSpawn;
 
     public EnemyData enemyData;
@@ -25,6 +28,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     public CameraShake camShake;
 
     public bool isMoving = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +46,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         if(hit)
         {
             rb.drag = 2000f;
-            FunctionTimer.Create(() => SetDrag(10f), 2f);
+            FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
             hit = false;
         }
 
@@ -110,7 +114,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         if(collision.gameObject.CompareTag("Toxic Gas"))
         {
             rb.drag = 2000f;
-            FunctionTimer.Create(() => SetDrag(10f), 2f);
+            FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
 
             transform.position = playerSpawn.transform.position;
         }
