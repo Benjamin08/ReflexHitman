@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class LoadLevelData : MonoBehaviour
 {
    
+    public event EventHandler OnEnemyDeath;
+
     public List<GameObject> enemyList;
     public GameObject[] enemyArray;
 
@@ -21,6 +24,8 @@ public class LoadLevelData : MonoBehaviour
         deadCount = 0;
         enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
         enemyList = new List<GameObject>(enemyArray);
+
+        OnEnemyDeath += TestingOnEnemyDeath;
 
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
         gameHandler.player = GameObject.FindGameObjectWithTag("Player");
@@ -43,6 +48,17 @@ public class LoadLevelData : MonoBehaviour
         }
         
         gameHandler.SetText();
+    }
+
+    public void TriggerEvent()
+    {
+        deadCount++;
+        OnEnemyDeath?.Invoke(this, EventArgs.Empty); // Invokes event if its not null
+    }
+
+    private void TestingOnEnemyDeath(object sender, EventArgs e)
+    {
+
     }
 
 }

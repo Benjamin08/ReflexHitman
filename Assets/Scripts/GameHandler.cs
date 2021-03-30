@@ -55,6 +55,7 @@ public class GameHandler : MonoBehaviour
         foreach (GameObject enemy in enemyArray)
         {
             enemy.SetActive(true);
+            
         }
 
         FunctionTimer.Create(() => player.GetComponent<PlayerCollisionsAndScoring>().SetDrag(playerCollisionAndScoring.dragAmount), .3f);
@@ -78,7 +79,6 @@ public class GameHandler : MonoBehaviour
         CMDebug.ButtonUI(new Vector2(300, -500), "Reset", () => ResetGame());
 
         CMDebug.ButtonUI(new Vector2(300, 0), "Next Level", () => NextLevel());
-    
 
         swipesLeft = loadLevelData.thisLevelData.GetMaxNumberOfSwipes();
 
@@ -109,7 +109,7 @@ public class GameHandler : MonoBehaviour
         levelTransitioner.LoadNextLevel();
         
         currentLevel++;
-        
+
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
         levelCompleteText.text = "Level Complete: " + levelPassed;
 
