@@ -31,9 +31,8 @@ public class GameHandler : MonoBehaviour
     private TouchTwo touchInput;
     public PlayerCollisionsAndScoring playerCollisionAndScoring;
 
-   // public List<GameObject>EnemyList;
     private GameObject[] enemyArray;
-    //public LevelData[] levelList;
+ 
 
     public LevelLoader levelTransitioner;
 
