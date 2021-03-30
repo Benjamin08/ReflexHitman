@@ -93,7 +93,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
                         break;
                     }
                     
-                    loadLevelData.deadCount++;
+                    
+                    loadLevelData.TriggerEvent();
                 }
             }
            

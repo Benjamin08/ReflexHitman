@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Star.unity
+    guid: 49592519d4553a449b90b1475797de0d
+  - enabled: 1
+    path: Assets/Scenes/Gateway_1.unity
+    guid: e4b7c6d961e53b14c971fb0ae83bf86a
   m_configObjects: {}

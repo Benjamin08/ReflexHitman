@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class LoadLevelData : MonoBehaviour
 {
    
+    public event EventHandler<OnEnemyDeathEventArgs> OnEnemyDeath;
+    public class OnEnemyDeathEventArgs : EventArgs 
+    {
+        public int numberOfDeadEnemysLevelData;
+    }
+
     public List<GameObject> enemyList;
     public GameObject[] enemyArray;
 
@@ -45,4 +52,9 @@ public class LoadLevelData : MonoBehaviour
         gameHandler.SetText();
     }
 
+    public void TriggerEvent()
+    {
+        deadCount++;
+        OnEnemyDeath?.Invoke(this, new OnEnemyDeathEventArgs{ numberOfDeadEnemysLevelData = deadCount }); // Invokes event if its not null
+    }
 }
