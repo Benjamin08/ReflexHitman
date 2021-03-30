@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 600, y: 0}
-  m_SizeDelta: {x: 400, y: 1421.7}
+  m_SizeDelta: {x: 400, y: 1800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9031131905666395352
 CanvasRenderer:
@@ -359,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9031131906607383891
 Transform:
   m_ObjectHideFlags: 0
@@ -412,7 +412,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -600, y: 0}
-  m_SizeDelta: {x: 400, y: 1421.7}
+  m_SizeDelta: {x: 400, y: 1800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9031131906699802006
 CanvasRenderer:
@@ -486,7 +486,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -147, y: -546.2}
+  m_AnchoredPosition: {x: -123, y: -554}
   m_SizeDelta: {x: 400, y: 91.433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9031131906867995555
@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 9031131906888671670}
   - component: {fileID: 9031131906888671669}
   - component: {fileID: 780859357}
+  - component: {fileID: 1968098920}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -592,7 +593,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 10.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -640,6 +641,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d0a6a13ca614b40b9abc66dac3b157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1968098920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031131906888671671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d188bb26f5617e7499f026099f07c08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireColor: {r: 1, g: 1, b: 1, a: 1}
+  UnitsSize: 21
+  constraint: 1
+  camera: {fileID: 9031131906888671668}
 --- !u!1 &9031131907250998626
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -146.99998, y: -637}
+  m_AnchoredPosition: {x: -123, y: -619.4}
   m_SizeDelta: {x: 400, y: 91.433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9031131907250998631
