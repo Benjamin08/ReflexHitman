@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(RotateWall))]
+
 public class RotateWall_Editor : Editor
 {
 

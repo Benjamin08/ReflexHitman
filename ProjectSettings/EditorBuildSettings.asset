@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gateway_1.unity
     guid: e4b7c6d961e53b14c971fb0ae83bf86a
+  - enabled: 1
+    path: Assets/Scenes/The Blender.unity
+    guid: 188c6e00e23ab9646a3db0fbb41e6692
   m_configObjects: {}
