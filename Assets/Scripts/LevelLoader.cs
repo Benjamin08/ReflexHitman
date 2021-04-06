@@ -43,8 +43,20 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        StartCoroutine(ReloadLevelCoroutine(SceneManager.GetActiveScene().buildIndex + 1));
+        //StartCoroutine(ReloadLevelCoroutine(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(ShowLevelDisplay());
         
+    }
+
+    public void ShowEndOfLevelDisplay()
+    {
+
+    }
+
+    IEnumerator ShowLevelDisplay()
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
     }
 
     IEnumerator ReloadLevelCoroutine(int levelIndex)
