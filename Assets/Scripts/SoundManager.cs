@@ -10,7 +10,8 @@ public static class SoundManager
         playerHurt,
         enemyHurt1,
         enemyHurt2,
-        enemyHurt3
+        enemyHurt3,
+        powerup_swipe,
 
     }
 

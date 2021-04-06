@@ -50,4 +50,6 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: fd317d669a6ab6c44baf7d239d0ca9ae, type: 3}
   - sound: 4
     audioClip: {fileID: 8300000, guid: 8b7f25997df41974991677e6b41887c3, type: 3}
+  - sound: 5
+    audioClip: {fileID: 8300000, guid: 13b013ed966d31b4786f9d3b5acc90f8, type: 3}
   soundAudioMusicArray: []

@@ -33,8 +33,8 @@ public class KillEnemiesToActivate : MonoBehaviour
     {
         foreach (GameObject gameObject in ObjectToActivate)
         {
-            gameObject.GetComponent<Collider2D>().enabled = active;
-            gameObject.GetComponent<SpriteRenderer>().enabled = active;
+            if(gameObject.GetComponent<Collider2D>() != null) gameObject.GetComponent<Collider2D>().enabled = active;
+            if(gameObject.GetComponent<SpriteRenderer>() != null) gameObject.GetComponent<SpriteRenderer>().enabled = active;
         }
     }
 

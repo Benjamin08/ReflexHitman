@@ -131,6 +131,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         {
             Destroy(collision.gameObject);
             gameHandler.AddSwipe(1);
+            SoundManager.PlaySound(SoundManager.Sound.powerup_swipe);
         }
         if(collision.gameObject.CompareTag("PassThroughPowerup"))
         {

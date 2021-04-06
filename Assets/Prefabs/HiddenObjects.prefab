@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5175835731383873900}
   - component: {fileID: 2341131495910104305}
   m_Layer: 0
-  m_Name: HiddenEnemies
+  m_Name: HiddenObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
