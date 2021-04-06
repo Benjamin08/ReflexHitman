@@ -25,7 +25,7 @@ public class RotateWall : MonoBehaviour
         loadLevelData = GameObject.FindGameObjectWithTag("loadLevelData").GetComponent<LoadLevelData>();
         if(unlockedWithKills)
         {
-            loadLevelData.OnEnemyDeath += ReceivingEvent;
+            loadLevelData.OnEnemyDeath += ReceivingAmountOfDeadEnemies;
         }
     }
 
@@ -40,9 +40,9 @@ public class RotateWall : MonoBehaviour
         
     }
 
-    private void ReceivingEvent(object sender, LoadLevelData.OnEnemyDeathEventArgs e)
+    private void ReceivingAmountOfDeadEnemies(object sender, LoadLevelData.OnEnemyDeathEventArgs e)
     {
-        Debug.Log("dead enemys from rotating wall: " + e.numberOfDeadEnemysLevelData);
+        
         if(e.numberOfDeadEnemysLevelData.Equals(killsRequireToActivate))
         {
             rotateSpeed = 40f;
