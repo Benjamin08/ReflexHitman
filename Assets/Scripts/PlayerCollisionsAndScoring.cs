@@ -11,6 +11,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     public Rigidbody2D rb;
     public bool hit = false;
 
+    public bool passThrough = false;
+
     private int counter = 0;
     private int counter2 = 0;
     Vector3 holdVelocity;
@@ -43,11 +45,16 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hit)
+        if(hit && !passThrough)
         {
             rb.drag = 2000f;
             FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
             hit = false;
+        }
+        else if(hit && passThrough)
+        {
+            hit = false;
+            passThrough = false;
         }
 
         if(rb.velocity.sqrMagnitude < .25f)
@@ -124,6 +131,11 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         {
             Destroy(collision.gameObject);
             gameHandler.AddSwipe(1);
+        }
+        if(collision.gameObject.CompareTag("PassThroughPowerup"))
+        {
+            Destroy(collision.gameObject);
+            passThrough = true;
         }
     }
 
