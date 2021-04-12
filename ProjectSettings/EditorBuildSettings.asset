@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/End Of Level Display Scene.unity
+    guid: fbc3ffdbdf214604db04e24f8996cdd0
+  - enabled: 1
     path: Assets/Scenes/1_1.unity
     guid: 976fefd83d2fb4648ab962c82aa70773
   - enabled: 0

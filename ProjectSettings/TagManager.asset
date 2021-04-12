@@ -15,6 +15,7 @@ TagManager:
   - SwipePowerup
   - loadLevelData
   - PassThroughPowerup
+  - DisplayPannel
   layers:
   - Default
   - TransparentFX

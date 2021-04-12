@@ -28,7 +28,7 @@ public class GameHandler : MonoBehaviour
 
     public GameObject player;
 
-    private TouchTwo touchInput;
+    public TouchTwo touchInput;
     public PlayerCollisionsAndScoring playerCollisionAndScoring;
 
     private GameObject[] enemyArray;
@@ -43,8 +43,8 @@ public class GameHandler : MonoBehaviour
         player.GetComponent<Rigidbody2D>().drag = 2000f;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<Transform>().position = playerSpawn.position;
-        player.GetComponent<TouchTwo>().OnSwipeDone += EndOfSwipe;
-
+        touchInput.OnSwipeDone += EndOfSwipe;
+        touchInput.numberOfTimesTouched = 0;
 
         swipesLeft = loadLevelData.thisLevelData.GetMaxNumberOfSwipes();
 
@@ -106,7 +106,7 @@ public class GameHandler : MonoBehaviour
     {
         Debug.Log("Next Level");
         levelTransitioner.LoadNextLevel();
-        
+        touchInput.numberOfTimesTouched = 0;
         currentLevel++;
 
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;

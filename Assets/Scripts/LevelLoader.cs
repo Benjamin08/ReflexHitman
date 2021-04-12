@@ -10,9 +10,16 @@ public class LevelLoader : MonoBehaviour
 
     public float transitionTime = 1f;
 
+
+    private GameHandler gameHandler;
+
+    public GameObject[] Stars;
+
     void Start()
     {
 
+
+        gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
     }
 
     // Update is called once per frame
@@ -48,15 +55,35 @@ public class LevelLoader : MonoBehaviour
         
     }
 
-    public void ShowEndOfLevelDisplay()
+    public void LoadNextLevelButton()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
+    public void ShowStars(int amountToShow)
+    {
+        for(int counter = 0; counter < amountToShow; counter++)
+        {
+            Stars[counter].SetActive(true);
+        }
+    }
+
+    private void DisableStars()
+    {
+        foreach (GameObject star in Stars)
+        {
+            star.SetActive(false);
+        }
     }
 
     IEnumerator ShowLevelDisplay()
     {
         transition.SetTrigger("Start");
+
+        CalculateStars();
+
         yield return new WaitForSeconds(transitionTime);
+        //return null;
     }
 
     IEnumerator ReloadLevelCoroutine(int levelIndex)
@@ -69,6 +96,34 @@ public class LevelLoader : MonoBehaviour
 
         // Reload level
         SceneManager.LoadScene(levelIndex);
+
+    }
+
+    private void CalculateStars()
+    {
+        if(gameHandler.touchInput.numberOfTimesTouched <= gameHandler.loadLevelData.thisLevelData.threeStarSwipeAmount)
+        {
+            // 3 
+            Debug.Log("3 star");
+            ShowStars(3);
+            return;
+        }
+        else if(gameHandler.touchInput.numberOfTimesTouched <= gameHandler.loadLevelData.thisLevelData.twoStarSwipeAmount)
+        {
+            // 2 STARS
+            Debug.Log("2 Star");
+            ShowStars(2);
+            return;
+        }
+        else
+        {
+            //1 STAR
+            Debug.Log("1 Star");
+            ShowStars(1);
+            return;
+        }
+
+        
 
     }
 }

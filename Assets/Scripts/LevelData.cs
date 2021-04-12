@@ -8,14 +8,14 @@ public class LevelData : ScriptableObject
     [SerializeField]
     private int maxNumberOfSwipes;
 
-    [SerializeField]
-    private int oneStarSwipeAmount;
     
-    [SerializeField]
-    private int twoStarSwipeAmount;
+    public int oneStarSwipeAmount;
+    
+    
+    public int twoStarSwipeAmount;
 
-    [SerializeField]
-    private int threeStarSwipeAmount;
+   
+    public int threeStarSwipeAmount;
 
     [SerializeField]
     private bool levelPassed;
