@@ -659,6 +659,7 @@ GameObject:
   - component: {fileID: 1750517148}
   - component: {fileID: 1750517147}
   - component: {fileID: 1750517146}
+  - component: {fileID: 1917544444}
   m_Layer: 0
   m_Name: ColbyDisplay
   m_TagString: Untagged
@@ -768,6 +769,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &1917544444
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750517144}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2030649333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1205,7 @@ MonoBehaviour:
   - {fileID: 842356587}
   - {fileID: 375855839}
   - {fileID: 191409077}
+  ColbyDisplay: {fileID: 1750517144}
 --- !u!1 &9031131906607383900
 GameObject:
   m_ObjectHideFlags: 0

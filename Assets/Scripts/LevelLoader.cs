@@ -15,11 +15,16 @@ public class LevelLoader : MonoBehaviour
 
     public GameObject[] Stars;
 
+    public GameObject ColbyDisplay;
+
     void Start()
     {
 
 
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
+
+
+        Debug.Log("SceneManager.sceneCountInBuildSettings " + SceneManager.sceneCountInBuildSettings);
     }
 
     // Update is called once per frame
@@ -57,7 +62,17 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevelButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(SceneManager.GetActiveScene().buildIndex <= SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log("SceneManager.GetActiveScene().buildIndex " + SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            
+        }
+        else
+        {
+            SceneManager.LoadScene("Title Screen");
+        }
+       
     }
 
     public void ShowStars(int amountToShow)

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using CodeMonkey.Utils;
+using CodeMonkey;
 
 public class LoadLevelData : MonoBehaviour
 {
@@ -50,6 +52,21 @@ public class LoadLevelData : MonoBehaviour
         }
         
         gameHandler.SetText();
+
+
+    if(gameHandler.currentLevel == 0)
+    {
+        Debug.Log("level 0");
+        {
+            FunctionTimer.Create(() => gameHandler.levelTransitioner.ColbyDisplay.GetComponent<CanvasGroup>().alpha = 1, 2f);
+            
+        }
+    }
+    else
+    {
+        gameHandler.levelTransitioner.ColbyDisplay.GetComponent<CanvasGroup>().alpha = 1f;
+    }   
+
     }
 
     public void TriggerEvent()
