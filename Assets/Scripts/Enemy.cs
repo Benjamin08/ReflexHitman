@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     public ParticleSystem particleSystem;
-
+    public bool isOrdered = false;
 
     // Start is called before the first frame update
     void Start()

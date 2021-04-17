@@ -29,6 +29,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
 
     public CameraShake camShake;
 
+    public KillOrderHandler KillOrder;
+
     public bool isMoving = true;
 
 
@@ -40,6 +42,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         loadLevelData = GameObject.FindGameObjectWithTag("loadLevelData").GetComponent<LoadLevelData>();
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
         camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
+        KillOrder = GameObject.Find("KillOrder").GetComponent<KillOrderHandler>();
     }
 
     // Update is called once per frame
@@ -64,6 +67,41 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
 
     }
 
+    private void EnemyKill(Collider2D collision)
+    {
+        for (counter = 0; counter < loadLevelData.enemyList.Count; counter++)
+        {
+            if (collision.gameObject.Equals(loadLevelData.enemyList[counter]))
+            {
+                collision.GetComponent<Enemy>().particleSystem.Play();
+                loadLevelData.enemyList[counter].GetComponent<SpriteRenderer>().enabled = false;
+                loadLevelData.enemyList[counter].GetComponent<Collider2D>().enabled = false;
+
+                int randNumber = UnityEngine.Random.Range(0, 2);
+                switch (randNumber)
+                {
+                    case 0:
+                        SoundManager.PlaySound(SoundManager.Sound.enemyHurt1, collision.transform.position);
+                        break;
+
+                    case 1:
+                        SoundManager.PlaySound(SoundManager.Sound.enemyHurt2, collision.transform.position);
+                        break;
+
+                    case 2:
+                        SoundManager.PlaySound(SoundManager.Sound.enemyHurt3, collision.transform.position);
+                        break;
+
+                    default:
+
+                        break;
+                }
+
+                loadLevelData.TriggerEvent();
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))
@@ -71,40 +109,19 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
             //HitEnemyEvent.Invoke(this, new HitEnemyEventArgs { enemyHit = collision.gameObject });
 
             StartCoroutine(camShake.Shake(.2f, .4f));
-           
-            for(counter = 0; counter < loadLevelData.enemyList.Count; counter++)
+            
+            //Kill order check
+            if (collision.GetComponent<Enemy>().isOrdered)
             {
-               if(collision.gameObject.Equals(loadLevelData.enemyList[counter]))
+                if (KillOrder.KillCheck(collision.gameObject)) { EnemyKill(collision); }
+                else
                 {
-                    collision.GetComponent<Enemy>().particleSystem.Play();
-                    loadLevelData.enemyList[counter].GetComponent<SpriteRenderer>().enabled = false;
-                    loadLevelData.enemyList[counter].GetComponent<Collider2D>().enabled = false;
-
-                    int randNumber = UnityEngine.Random.Range(0,2);
-                    switch(randNumber)
-                    {
-                        case 0:
-                            SoundManager.PlaySound(SoundManager.Sound.enemyHurt1, collision.transform.position);
-                        break;
-
-                        case 1:
-                            SoundManager.PlaySound(SoundManager.Sound.enemyHurt2, collision.transform.position);
-                        break;
-
-                        case 2:
-                            SoundManager.PlaySound(SoundManager.Sound.enemyHurt3, collision.transform.position);
-                        break;
-
-                        default:
-
-                        break;
-                    }
-                    
-                    
-                    loadLevelData.TriggerEvent();
+                    rb.drag = 2000f;
+                    FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
+                    transform.position = playerSpawn.transform.position;
                 }
             }
-           
+            else { EnemyKill(collision); }
            
             if(loadLevelData.deadCount.Equals(loadLevelData.enemyList.Count))
             {
@@ -112,10 +129,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
                 gameHandler.SetText();
                 FunctionTimer.Create(() => gameHandler.NextLevel(), 1f);
             }
-        
-           
-//
-
+     
             hit = true;
         }
         
