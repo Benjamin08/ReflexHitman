@@ -59,7 +59,12 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(ShowLevelDisplay());
         
     }
-
+    public void LoadLastLevel()
+    {
+        
+        StartCoroutine(ReloadLevelCoroutine(SceneManager.GetActiveScene().buildIndex - 1));
+        
+    }
     public void LoadNextLevelButton()
     {
         if(SceneManager.GetActiveScene().buildIndex <= SceneManager.sceneCountInBuildSettings)
