@@ -14,6 +14,20 @@ public class TitleScreenEvents : MonoBehaviour
     void Start()
     {
         
-        FunctionTimer.Create(()=> SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1), 2f);
+        //FunctionTimer.Create(()=> SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1), 2f);
+    }
+
+    public void PlayGame()
+    {
+    
+           SceneManager.LoadScene("1_1"); 
+
+    }
+
+    public void Settings()
+    {
+    
+           SceneManager.LoadScene("Settings"); 
+
     }
 }

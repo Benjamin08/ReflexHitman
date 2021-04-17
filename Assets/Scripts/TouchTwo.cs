@@ -21,6 +21,9 @@ public class TouchTwo : MonoBehaviour
     private float swipeLength = 0;
 
     public bool endOfTouch = false;
+
+    public bool touchingPlayer;
+
     private void Start()
     {
         playerCollisionScore = GetComponent<PlayerCollisionsAndScoring>();
@@ -38,14 +41,36 @@ public class TouchTwo : MonoBehaviour
     {
         if(Input.touchCount > 0) 
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
+
+            if(hitInfo.collider != null && GameSettings.touchPlayerToSwipe)
+            {
+                
+            
+                switch(hitInfo.collider.name)
+                {
+
+                  case "Player" :
+                      Debug.Log("hit player");
+                       touchingPlayer = true;
+                       break;
+
+                }
+            }
+            else if(!GameSettings.touchPlayerToSwipe)
+            {
+                touchingPlayer = true;
+            }
+        
+
+            if (Input.GetTouch(0).phase == TouchPhase.Began && touchingPlayer)
             {
                 endOfTouch = false;
                 touchTimeStart = Time.time;
                 startPos = Input.GetTouch(0).position;
                 playerCollisionScore.SetDrag(playerCollisionScore.dragAmount);
             }
-            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            if (Input.GetTouch(0).phase == TouchPhase.Ended && touchingPlayer)
             {
                 playerCollisionScore.isMoving = true;
                 endOfTouch = true;
