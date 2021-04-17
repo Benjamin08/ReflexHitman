@@ -69,6 +69,12 @@ public class LoadLevelData : MonoBehaviour
 
     }
 
+    public void ResetEnemyDeaths(int resetAmount)
+    {
+        deadCount -= resetAmount;
+        OnEnemyDeath?.Invoke(this, new OnEnemyDeathEventArgs { numberOfDeadEnemysLevelData = deadCount }); // Invokes event if its not null
+    }
+
     public void TriggerEvent()
     {
         deadCount++;
