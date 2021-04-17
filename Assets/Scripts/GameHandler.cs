@@ -24,14 +24,14 @@ public class GameHandler : MonoBehaviour
     // These transforms are so the camera can folllow them at any point
     //public Transform cameraLookPoint;
 
-    private Transform playerSpawn;
+    public Transform playerSpawn;
 
     public GameObject player;
 
     public TouchTwo touchInput;
     public PlayerCollisionsAndScoring playerCollisionAndScoring;
 
-    private GameObject[] enemyArray;
+    public GameObject[] enemyArray;
  
 
     public LevelLoader levelTransitioner;
@@ -43,7 +43,10 @@ public class GameHandler : MonoBehaviour
         player.GetComponent<Rigidbody2D>().drag = 2000f;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<Transform>().position = playerSpawn.position;
-        touchInput.OnSwipeDone += EndOfSwipe;
+        //touchInput.OnSwipeDone += EndOfSwipe;
+
+        loadLevelData.deadCount = 0;
+
         touchInput.numberOfTimesTouched = 0;
 
         swipesLeft = loadLevelData.thisLevelData.GetMaxNumberOfSwipes();
@@ -53,8 +56,8 @@ public class GameHandler : MonoBehaviour
 
         foreach (GameObject enemy in enemyArray)
         {
-            enemy.SetActive(true);
-            
+            enemy.GetComponent<SpriteRenderer>().enabled = true;
+            enemy.GetComponent<Collider2D>().enabled = true;
         }
 
         FunctionTimer.Create(() => player.GetComponent<PlayerCollisionsAndScoring>().SetDrag(playerCollisionAndScoring.dragAmount), .3f);
@@ -74,10 +77,6 @@ public class GameHandler : MonoBehaviour
         enemyArray = loadLevelData.enemyArray;
 
         //camera.Setup(() => cameraLookPoint.position);
-
-        CMDebug.ButtonUI(new Vector2(300, -500), "Reset", () => ResetGame());
-
-        CMDebug.ButtonUI(new Vector2(300, 0), "Next Level", () => NextLevel());
 
         swipesLeft = loadLevelData.thisLevelData.GetMaxNumberOfSwipes();
 
@@ -108,6 +107,19 @@ public class GameHandler : MonoBehaviour
         levelTransitioner.LoadNextLevel();
         touchInput.numberOfTimesTouched = 0;
         currentLevel++;
+
+        numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
+        levelCompleteText.text = "Level Complete: " + levelPassed;
+
+        FillEnemyArray();
+    }
+
+    public void LastLevel()
+    {
+        Debug.Log("Last Level");
+        levelTransitioner.LoadLastLevel();
+        touchInput.numberOfTimesTouched = 0;
+        currentLevel--;
 
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
         levelCompleteText.text = "Level Complete: " + levelPassed;
@@ -149,7 +161,7 @@ public class GameHandler : MonoBehaviour
     private void Update()
     {
 
-        // bugged on second level thinks player is not moving the frame I swipe
+        
         if(touchInput.endOfTouch && swipesLeft <= 0 && playerCollisionAndScoring.rb.IsSleeping() && !levelPassed)
         {
             Debug.Log("0 swipes left");

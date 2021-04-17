@@ -27,6 +27,7 @@ public class LoadLevelData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         deadCount = 0;
         enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
         enemyList = new List<GameObject>(enemyArray);
@@ -38,6 +39,8 @@ public class LoadLevelData : MonoBehaviour
         gameHandler.levelCompleteText = GameObject.Find("Level Complete Text").GetComponent<Text>();
         gameHandler.numberOfSwipesText = GameObject.Find("Number Of Swipes").GetComponent<Text>();
         gameHandler.touchInput = gameHandler.player.GetComponent<TouchTwo>();
+        gameHandler.playerSpawn = GameObject.FindGameObjectWithTag("Player Spawn").GetComponent<Transform>();
+        
 
         gameHandler.swipesLeft = thisLevelData.GetMaxNumberOfSwipes();
        
@@ -45,6 +48,7 @@ public class LoadLevelData : MonoBehaviour
 
         gameHandler.loadLevelData = this;
 
+        gameHandler.enemyArray = gameHandler.loadLevelData.enemyArray;
 
         if(gameHandler.currentLevel != 0)
         {
@@ -53,6 +57,11 @@ public class LoadLevelData : MonoBehaviour
         
         gameHandler.SetText();
 
+        CMDebug.ButtonUI(new Vector2(300, -500), "Reset", () => gameHandler.ResetGame());
+
+        CMDebug.ButtonUI(new Vector2(300, 0), "Next Level", () => gameHandler.NextLevel());
+
+        CMDebug.ButtonUI(new Vector2(300, -250), "Last Level", () => gameHandler.LastLevel());
 
     if(gameHandler.currentLevel == 0)
     {
@@ -74,4 +83,7 @@ public class LoadLevelData : MonoBehaviour
         deadCount++;
         OnEnemyDeath?.Invoke(this, new OnEnemyDeathEventArgs{ numberOfDeadEnemysLevelData = deadCount }); // Invokes event if its not null
     }
+
+
+    
 }
