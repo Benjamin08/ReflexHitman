@@ -18,7 +18,13 @@ public class KillOrderHandler : MonoBehaviour
         loadLevelData = GameObject.FindGameObjectWithTag("loadLevelData").GetComponent<LoadLevelData>();
 
         //set our enemies to be ordered
-        foreach(GameObject obj in KillList) { obj.GetComponent<Enemy>().isOrdered = true; }
+        foreach (GameObject obj in KillList) { obj.GetComponent<Enemy>().isOrdered = true; }
+
+        int count;
+        for (count = 0; count < KillList.Count; count++)
+        {
+            KillList[count].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Enemy_" + (count + 1));
+        }
     }
 
     //Resets all our ordered enemies
