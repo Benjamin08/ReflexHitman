@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: aac6c3500947ee949a2edac924edf13d, type: 3}
   m_Color: {r: 0.017399432, g: 0.21698111, b: 0.03506646, a: 1}
   m_FlipX: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 0}
+  isOrdered: 0
 --- !u!198 &1951441564
 ParticleSystem:
   m_ObjectHideFlags: 0
