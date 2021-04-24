@@ -5,21 +5,19 @@ using UnityEngine;
 public class KillOrderHandler : MonoBehaviour
 {
     public List<GameObject> KillList;
+    public GameObject Trigger;
 
-    private GameHandler gameHandler;
-    private GameObject Player;
     private LoadLevelData loadLevelData;
 
     void Awake()
     {
         //create and find our objects
-        gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
-        Player = GameObject.FindGameObjectWithTag("Player");
         loadLevelData = GameObject.FindGameObjectWithTag("loadLevelData").GetComponent<LoadLevelData>();
 
         //set our enemies to be ordered
         foreach (GameObject obj in KillList) { obj.GetComponent<Enemy>().isOrdered = true; }
 
+        //change sprites to display kill order
         int count;
         for (count = 0; count < KillList.Count; count++)
         {
@@ -43,6 +41,25 @@ public class KillOrderHandler : MonoBehaviour
         loadLevelData.ResetEnemyDeaths(counter);
     }
 
+    //Calls trigger function from Trigger
+    void OnTrigger()
+    {
+        if (Trigger != null)
+        {
+            switch (Trigger.name)
+            {
+                case "door":
+                    Trigger.GetComponent<Door_Control>().Open();
+                    Debug.Log("Kill Order: Door triggered");
+                    break;
+                default:
+                    Debug.Log("Kill Order: No trigger found");
+                    break;
+            }
+        }
+        else { Debug.LogError("Kill Order: Null trigger"); }
+    }
+
     //Returns true if all enemies before the one at index are already dead
     bool OrderCheck(float index)
     {
@@ -54,7 +71,7 @@ public class KillOrderHandler : MonoBehaviour
         return true;
     }
 
-    //returns true if the enemy killed was in the correct order
+    //Returns true if the enemy killed was in the correct order
     public bool KillCheck(GameObject Killed)
     {
         int count;
@@ -62,6 +79,10 @@ public class KillOrderHandler : MonoBehaviour
         {
             if (KillList[count].Equals(Killed))
             {
+                if(count == KillList.Count - 1)
+                {
+                    OnTrigger();
+                }
                 if(OrderCheck(count)) { return true; }
                 else 
                 {
