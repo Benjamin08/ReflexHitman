@@ -98,6 +98,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
                 }
 
                 loadLevelData.TriggerEvent();
+                gameHandler.SaveLevelComplete();
             }
         }
     }

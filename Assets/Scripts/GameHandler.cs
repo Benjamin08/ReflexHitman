@@ -1,3 +1,4 @@
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -100,7 +101,10 @@ public class GameHandler : MonoBehaviour
 
     }
 
-
+    public void SaveLevelComplete()
+    {
+        File.WriteAllText(Application.dataPath + "/save.txt", "test"); 
+    }
     public void NextLevel()
     {
         Debug.Log("Next Level");
