@@ -34,7 +34,6 @@ public class GameHandler : MonoBehaviour
 
     public GameObject[] enemyArray;
  
-
     public LevelLoader levelTransitioner;
 
     public LoadLevelData loadLevelData;
@@ -103,7 +102,13 @@ public class GameHandler : MonoBehaviour
 
     public void SaveLevelComplete()
     {
-        File.WriteAllText(Application.dataPath + "/save.txt", "test"); 
+        File.WriteAllText(Application.dataPath + "/save.txt", "test 123"); 
+    }
+
+    public void LoadStuff()
+    {
+        string savedString = File.ReadAllText(Application.dataPath + "/save.txt");
+        Debug.Log(savedString);
     }
     public void NextLevel()
     {
@@ -174,6 +179,12 @@ public class GameHandler : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LoadStuff();
         }
     }
 
