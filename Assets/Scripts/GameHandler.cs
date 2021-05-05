@@ -100,15 +100,21 @@ public class GameHandler : MonoBehaviour
 
     }
 
+
+    //call in PlayerCollisionsAndScoring the moment you kill enough enemies
     public void SaveLevelComplete()
     {
-        File.WriteAllText(Application.dataPath + "/save.txt", "test 123"); 
+        
+        int levelToSave = currentLevel;
+        string levelToSaveString = "" + levelToSave;
+        File.WriteAllText(Application.dataPath + "/save1.txt", "Level: " + levelToSaveString); 
     }
 
     public void LoadStuff()
     {
-        string savedString = File.ReadAllText(Application.dataPath + "/save.txt");
-        Debug.Log(savedString);
+        string savedLevelString = File.ReadAllText(Application.dataPath + "/save.txt");
+        Debug.Log(savedLevelString);
+        levelTransitioner.LoadScene(int.Parse(savedLevelString));
     }
     public void NextLevel()
     {

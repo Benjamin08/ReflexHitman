@@ -35,22 +35,27 @@ public class LevelLoader : MonoBehaviour
 
     public void ReloadLevel()
     {
-        StartCoroutine(ReloadLevelCoroutine(SceneManager.GetActiveScene().buildIndex));
+        StartCoroutine(LevelChangeCoroutine(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void PlayGame()
     {
-        StartCoroutine(ReloadLevelCoroutine(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(LevelChangeCoroutine(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void LoadCredits()
     {
-        StartCoroutine(ReloadLevelCoroutine(12)); // 12 is credits
+        StartCoroutine(LevelChangeCoroutine(12)); // 12 is credits
     }
 
     public void LoadMainScreen()
     {
-        StartCoroutine(ReloadLevelCoroutine(0)); // 0 is Title scene
+        StartCoroutine(LevelChangeCoroutine(0)); // 0 is Title scene
+    }
+
+    public void LoadScene(int sceneRef)
+    {
+        StartCoroutine(LevelChangeCoroutine(sceneRef));
     }
 
     public void LoadNextLevel()
@@ -62,7 +67,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadLastLevel()
     {
         
-        StartCoroutine(ReloadLevelCoroutine(SceneManager.GetActiveScene().buildIndex - 1));
+        StartCoroutine(LevelChangeCoroutine(SceneManager.GetActiveScene().buildIndex - 1));
         
     }
     public void LoadNextLevelButton()
@@ -106,7 +111,7 @@ public class LevelLoader : MonoBehaviour
         //return null;
     }
 
-    IEnumerator ReloadLevelCoroutine(int levelIndex)
+    IEnumerator LevelChangeCoroutine(int levelIndex)
     {
         // Play animation
         transition.SetTrigger("Start");

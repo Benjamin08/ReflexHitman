@@ -20,7 +20,7 @@ public class TitleScreenEvents : MonoBehaviour
     public void PlayGame()
     {
     
-           SceneManager.LoadScene("1_1"); 
+        
 
     }
 
