@@ -108,6 +108,7 @@ public class GameHandler : MonoBehaviour
         int levelToSave = currentLevel;
         string levelToSaveString = "" + levelToSave;
         File.WriteAllText(Application.dataPath + "/save1.txt", "Level: " + levelToSaveString); 
+        Debug.Log("Game Saved!!! " + levelToSave);
     }
 
     public void LoadStuff()

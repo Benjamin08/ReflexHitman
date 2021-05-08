@@ -103,7 +103,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
                 }
 
                 loadLevelData.TriggerEvent();
-                gameHandler.SaveLevelComplete();
+                
             }
         }
     }
@@ -132,6 +132,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
             if(loadLevelData.deadCount.Equals(loadLevelData.enemyList.Count))
             {
                 gameHandler.levelPassed = true;
+                gameHandler.SaveLevelComplete();
                 gameHandler.SetText();
                 FunctionTimer.Create(() => gameHandler.NextLevel(), 1f);
             }
