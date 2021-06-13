@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour{
     public GameObject levelHolder;
@@ -15,8 +16,6 @@ public class LevelSelector : MonoBehaviour{
     private int amountPerPage;
     private int currentLevelCount;
 
-    public List<GameObject> iconList;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +26,7 @@ public class LevelSelector : MonoBehaviour{
         amountPerPage = maxInARow * maxInACol;
         int totalPages = Mathf.CeilToInt((float)numberOfLevels / amountPerPage);
         LoadPanels(totalPages);
+                 
     }
     void LoadPanels(int numberOfPanels)
     {
@@ -45,9 +45,6 @@ public class LevelSelector : MonoBehaviour{
             LoadIcons(numberOfIcons, panel);
         }
         Destroy(panelClone);
-
-       
-
     }
     void SetUpGrid(GameObject panel)
     {
@@ -60,8 +57,6 @@ public class LevelSelector : MonoBehaviour{
     void LoadIcons(int numberOfIcons, GameObject parentObject)
     {
 
-        
-
         for(int i = 1; i <= numberOfIcons; i++){
             currentLevelCount++;
             GameObject icon = Instantiate(levelIcon) as GameObject;
@@ -70,13 +65,16 @@ public class LevelSelector : MonoBehaviour{
             icon.name = "Level " + i;
 
             icon.GetComponentInChildren<TextMeshProUGUI>().SetText("Level " + currentLevelCount);
+            
+
         }
         
     }
 
-    public void SetLevel(int levelToSet)
+    public void LoadLevelWithClick(int levelToSet)
     {
-        Debug.Log("this should load level: " + levelToSet);
+        Debug.Log("level to set: " + levelToSet);
+        SceneManager.LoadScene(levelToSet);
     }
 
     // Update is called once per frame

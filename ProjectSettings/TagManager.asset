@@ -16,6 +16,8 @@ TagManager:
   - loadLevelData
   - PassThroughPowerup
   - DisplayPannel
+  - Level Icon
+  - LevelTracker
   layers:
   - Default
   - TransparentFX

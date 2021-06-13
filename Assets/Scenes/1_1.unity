@@ -611,7 +611,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 787498457}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 289b9aa7781a6d8499363e50def70e5d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2718,6 +2718,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3429799739704113870, guid: ee126b7d6e1fc5848afd26d27a8a739c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee126b7d6e1fc5848afd26d27a8a739c, type: 3}
 --- !u!1001 &6616069434933527464
@@ -2899,7 +2903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9031131906888671668, guid: 4c99f8bcb216d47418a88b71183e85a7, type: 3}
       propertyPath: orthographic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9031131906888671668, guid: 4c99f8bcb216d47418a88b71183e85a7, type: 3}
       propertyPath: orthographic size
