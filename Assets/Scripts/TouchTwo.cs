@@ -18,6 +18,10 @@ public class TouchTwo : MonoBehaviour
     [Range(0.05f, 1f)]
     public float throwForce = 0.3f;
 
+
+    [Range(0.05f, 1f)]
+    public float dragThreshhold;
+
     private float swipeLength = 0;
 
     public bool endOfTouch = false;
@@ -32,16 +36,18 @@ public class TouchTwo : MonoBehaviour
 
     private void SwipeDone(object sender, EventArgs e)
     {
+       
+        
         numberOfTimesTouched++;
         
         GetComponent<Rigidbody2D>().AddForce(-direction / timeInterval * throwForce);
-
+    
         touchingPlayer = false;
     }    
 
     void Update()
     {
-        if(Input.touchCount > 0) 
+        if(Input.touchCount > 0 && playerCollisionScore.isMoving == false) 
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
 
@@ -75,18 +81,18 @@ public class TouchTwo : MonoBehaviour
             }
             if (Input.GetTouch(0).phase == TouchPhase.Ended && touchingPlayer)
             {
+                direction = startPos - endPos;
+                endPos = Input.GetTouch(0).position;
+
+
                 playerCollisionScore.isMoving = true;
                 endOfTouch = true;
-                endPos = Input.GetTouch(0).position;
                 direction = startPos - endPos;
-
                 touchTimeFinish = Time.time;
                 timeInterval = touchTimeFinish - touchTimeStart;
-
-
                 swipeLength = Vector2.Distance(startPos, endPos);
 
-                
+
                
                 if(swipeLength > 20 && playerCollisionScore.gameHandler.swipesLeft > 0 && touchingPlayer)
                 {

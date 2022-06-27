@@ -18,7 +18,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     Vector3 holdVelocity;
     public float timer;
 
-    [Range(.1f, 100f)]
+    [Range(.1f, 20f)]
     public float dragAmount = 10f;
 
     private Transform playerSpawn;
@@ -65,10 +65,15 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
             passThrough = false;
         }
 
-        if(rb.velocity.sqrMagnitude < .25f)
+        if(rb.velocity.sqrMagnitude < .01f)
         {
             isMoving = false;
         }
+        else
+        {
+            isMoving = true;
+        }
+
 
     }
 
@@ -79,7 +84,11 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
             if (collision.gameObject.Equals(loadLevelData.enemyList[counter]))
             {
                 collision.GetComponent<Enemy>().particleSystem.Play();
-                loadLevelData.enemyList[counter].GetComponent<SpriteRenderer>().enabled = false;
+                
+                loadLevelData.enemyList[counter].GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+                loadLevelData.enemyList[counter].GetComponentInChildren<Animator>().enabled = false;
+
                 loadLevelData.enemyList[counter].GetComponent<Collider2D>().enabled = false;
 
                 int randNumber = UnityEngine.Random.Range(0, 2);
