@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 3429799739704113868}
   - component: {fileID: 3429799739704113870}
   - component: {fileID: 3429799739704113865}
-  - component: {fileID: 77079279765514199}
+  - component: {fileID: 2804376251980820922}
   - component: {fileID: 3429799739704113869}
   - component: {fileID: 3429799739704113871}
   m_Layer: 0
-  m_Name: Player - DragToShoot
+  m_Name: Player - DragNShoot
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &77079279765514199
+--- !u!114 &2804376251980820922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3429799739704113864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83a0669317ca66d4a848d37a81dc9dca, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ce7fa8c56509c44986321b6689a83b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3429799739704113869
