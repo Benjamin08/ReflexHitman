@@ -100,7 +100,7 @@ public class LevelLoader : MonoBehaviour
     {
         transition.SetTrigger("Start");
 
-        CalculateStars();
+       // CalculateStars();
 
         yield return new WaitForSeconds(transitionTime);
         //return null;
@@ -119,7 +119,7 @@ public class LevelLoader : MonoBehaviour
 
     }
 
-    private void CalculateStars()
+   /* private void CalculateStars()
     {
         if(gameHandler.touchInput.numberOfTimesTouched <= gameHandler.loadLevelData.thisLevelData.threeStarSwipeAmount)
         {
@@ -146,4 +146,5 @@ public class LevelLoader : MonoBehaviour
         
 
     }
+    */
 }

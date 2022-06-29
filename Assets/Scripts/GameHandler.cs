@@ -28,7 +28,7 @@ public class GameHandler : MonoBehaviour
 
     public GameObject player;
 
-    public TouchTwo touchInput;
+    //public TouchTwo touchInput;
     public PlayerCollisionsAndScoring playerCollisionAndScoring;
 
     public GameObject[] enemyArray;
@@ -47,7 +47,7 @@ public class GameHandler : MonoBehaviour
 
         loadLevelData.deadCount = 0;
 
-        touchInput.numberOfTimesTouched = 0;
+        //touchInput.numberOfTimesTouched = 0;
 
         swipesLeft = loadLevelData.thisLevelData.GetMaxNumberOfSwipes();
 
@@ -92,9 +92,9 @@ public class GameHandler : MonoBehaviour
 
         playerCollisionAndScoring = player.GetComponent<PlayerCollisionsAndScoring>();
 
-        touchInput = player.GetComponent<TouchTwo>();
+        //touchInput = player.GetComponent<TouchTwo>();
 
-        touchInput.OnSwipeDone += EndOfSwipe;
+        //touchInput.OnSwipeDone += EndOfSwipe;
 
         playerSpawn = GameObject.FindGameObjectWithTag("Player Spawn").transform;
 
@@ -105,7 +105,7 @@ public class GameHandler : MonoBehaviour
     {
         Debug.Log("Next Level");
         levelTransitioner.LoadNextLevel();
-        touchInput.numberOfTimesTouched = 0;
+        //touchInput.numberOfTimesTouched = 0;
         currentLevel++;
 
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
@@ -118,7 +118,7 @@ public class GameHandler : MonoBehaviour
     {
         Debug.Log("Last Level");
         levelTransitioner.LoadLastLevel();
-        touchInput.numberOfTimesTouched = 0;
+        //touchInput.numberOfTimesTouched = 0;
         currentLevel--;
 
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
@@ -162,7 +162,7 @@ public class GameHandler : MonoBehaviour
     {
 
         
-        if(touchInput.endOfTouch && swipesLeft <= 0 && playerCollisionAndScoring.rb.IsSleeping() && !levelPassed)
+        if(swipesLeft <= 0 && playerCollisionAndScoring.rb.IsSleeping() && !levelPassed)
         {
             Debug.Log("0 swipes left");
             levelTransitioner.ReloadLevel();

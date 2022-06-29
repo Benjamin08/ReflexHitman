@@ -81,7 +81,7 @@ public class TouchTwo : MonoBehaviour
             }
             if (Input.GetTouch(0).phase == TouchPhase.Ended && touchingPlayer)
             {
-                direction = startPos - endPos;
+                //direction = startPos - endPos;
                 endPos = Input.GetTouch(0).position;
 
 

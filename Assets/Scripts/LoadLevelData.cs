@@ -38,7 +38,7 @@ public class LoadLevelData : MonoBehaviour
         gameHandler.playerCollisionAndScoring = gameHandler.player.GetComponent<PlayerCollisionsAndScoring>();
         gameHandler.levelCompleteText = GameObject.Find("Level Complete Text").GetComponent<Text>();
         gameHandler.numberOfSwipesText = GameObject.Find("Number Of Swipes").GetComponent<Text>();
-        gameHandler.touchInput = gameHandler.player.GetComponent<TouchTwo>();
+        //gameHandler.touchInput = gameHandler.player.GetComponent<TouchTwo>();
         gameHandler.playerSpawn = GameObject.FindGameObjectWithTag("Player Spawn").GetComponent<Transform>();
         
 
