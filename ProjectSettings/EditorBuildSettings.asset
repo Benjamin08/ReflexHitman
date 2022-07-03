@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/1_1 - DragToShoot.unity
+    guid: 8554c7e5e8643404a8704f9ba7113909
+  - enabled: 1
     path: Assets/Scenes/Title Screen.unity
     guid: 7c2b669827a39f54889102c86b924dd1
   - enabled: 1

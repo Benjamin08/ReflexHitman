@@ -17,9 +17,12 @@ public class DragNShoot : MonoBehaviour
     Vector3 startPoint;
     Vector3 endPoint;
 
+    TrajectoryLine tl;
+
     private void Start()
     {
         cam = Camera.main;
+        tl = GetComponent<TrajectoryLine>();
     }
 
 
@@ -28,8 +31,15 @@ public class DragNShoot : MonoBehaviour
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             startPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
-            startPoint.z = 15;
+            startPoint.z = -5;
             Debug.Log("start position: " + startPoint);
+        }
+
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+          Vector3 currentPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
+          currentPoint.z = -5;  
+          tl.RenderLine(startPoint, currentPoint);
         }
 
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
@@ -41,7 +51,7 @@ public class DragNShoot : MonoBehaviour
             force = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x,maxPower.x),Mathf.Clamp(startPoint.y - endPoint.y, minPower.y,maxPower.y));
             Debug.Log("force: " + force);
             rb.AddForce(force * power, ForceMode2D.Impulse);
-
+            tl.EndLine();
         }
     }
 }
