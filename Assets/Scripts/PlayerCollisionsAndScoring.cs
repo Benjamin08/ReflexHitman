@@ -14,7 +14,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     public bool passThrough = false;
 
     private int counter = 0;
-    private int counter2 = 0;
+    //private int counter2 = 0;
     Vector3 holdVelocity;
     public float timer;
 

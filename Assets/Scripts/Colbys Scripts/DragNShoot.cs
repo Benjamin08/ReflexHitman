@@ -11,6 +11,8 @@ public class DragNShoot : MonoBehaviour
     public Vector2 minPower;
     public Vector2 maxPower;
 
+    public bool touchingPlayer;
+    
     Camera cam;
 
     Vector2 force;
@@ -18,40 +20,73 @@ public class DragNShoot : MonoBehaviour
     Vector3 endPoint;
 
     TrajectoryLine tl;
+    PlayerCollisionsAndScoring playerCollisionScore;
+
 
     private void Start()
     {
         cam = Camera.main;
         tl = GetComponent<TrajectoryLine>();
+        playerCollisionScore = GetComponent<PlayerCollisionsAndScoring>();
     }
 
 
     private void Update()
     {
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            startPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
-            startPoint.z = -5;
-            Debug.Log("start position: " + startPoint);
-        }
 
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        if(Input.touchCount > 0 && playerCollisionScore.isMoving == false)
         {
-          Vector3 currentPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
-          currentPoint.z = -5;  
-          tl.RenderLine(startPoint, currentPoint);
-        }
 
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-            endPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
-            endPoint.z = 15;
-            Debug.Log("end position: " + endPoint);
+            RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
+            
+            if(hitInfo.collider != null && GameSettings.touchPlayerToMove)
+            {
+                
+                //Debug.Log("hit: " + hitInfo.collider.name);
+                switch(hitInfo.collider.tag)
+                {
 
-            force = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x,maxPower.x),Mathf.Clamp(startPoint.y - endPoint.y, minPower.y,maxPower.y));
-            Debug.Log("force: " + force);
-            rb.AddForce(force * power, ForceMode2D.Impulse);
-            tl.EndLine();
-        }
+                  case "Player" :
+                      Debug.Log("hit player");
+                       touchingPlayer = true;
+                       break;
+
+                }
+            }
+            else if(!GameSettings.touchPlayerToMove)
+            {
+                touchingPlayer = true;
+            }
+
+
+
+            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && touchingPlayer)
+            {
+                startPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
+                startPoint.z = -5;
+                //Debug.Log("start position: " + startPoint);
+            }
+
+            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+            {
+                Vector3 currentPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
+                currentPoint.z = -5;  
+                tl.RenderLine(startPoint, currentPoint);
+            }
+
+            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+            {
+                endPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
+                endPoint.z = 15;
+                //Debug.Log("end position: " + endPoint);
+                touchingPlayer = false;
+                playerCollisionScore.isMoving = true;
+                    
+                force = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x,maxPower.x),Mathf.Clamp(startPoint.y - endPoint.y, minPower.y,maxPower.y));
+                //Debug.Log("force: " + force);
+                rb.AddForce(force * power, ForceMode2D.Impulse);
+                tl.EndLine();
+            }
+        }    
     }
 }

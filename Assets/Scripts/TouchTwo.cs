@@ -51,11 +51,11 @@ public class TouchTwo : MonoBehaviour
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
 
-            if(hitInfo.collider != null && GameSettings.touchPlayerToSwipe)
+            if(hitInfo.collider != null && GameSettings.touchPlayerToMove)
             {
                 
             
-                switch(hitInfo.collider.name)
+                switch(hitInfo.collider.tag)
                 {
 
                   case "Player" :
@@ -65,7 +65,7 @@ public class TouchTwo : MonoBehaviour
 
                 }
             }
-            else if(!GameSettings.touchPlayerToSwipe)
+            else if(!GameSettings.touchPlayerToMove)
             {
                 touchingPlayer = true;
             }

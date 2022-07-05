@@ -7,15 +7,15 @@ using UnityEngine.UI;
 public class GameSettingsMenu : MonoBehaviour
 {
   
-  public Toggle playerSwipeToggle;
+  public Toggle playerMoveToggle;
 
     void Start()
     {
-        playerSwipeToggle.isOn = GameSettings.touchPlayerToSwipe;
+        playerMoveToggle.isOn = GameSettings.touchPlayerToMove;
     }
-    public void ChangeSetting(bool p_touchPlayerToSwipe)
+    public void ChangeSetting(bool p_touchPlayerToMove)
     {
-        GameSettings.touchPlayerToSwipe = p_touchPlayerToSwipe;
+        GameSettings.touchPlayerToMove = p_touchPlayerToMove;
     }
 
     public void LoadMenu()

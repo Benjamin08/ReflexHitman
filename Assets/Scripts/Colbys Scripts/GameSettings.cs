@@ -4,12 +4,12 @@ using UnityEngine;
 
 public static class GameSettings 
 {
-    public static bool touchPlayerToSwipe;
+    public static bool touchPlayerToMove = true;
  
 
 
-    public static void SetTouchPlayerToSwipe(bool p_touchPlayerToSwipe)
+    public static void SetTouchPlayerToSwipe(bool p_touchPlayerToMove)
     {
-        touchPlayerToSwipe = p_touchPlayerToSwipe;
+        touchPlayerToMove= p_touchPlayerToMove;
     }
 }
