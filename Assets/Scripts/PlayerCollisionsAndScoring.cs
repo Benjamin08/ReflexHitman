@@ -43,6 +43,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         loadLevelData = GameObject.FindGameObjectWithTag("loadLevelData").GetComponent<LoadLevelData>();
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
         camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
+        rb.drag = dragAmount;
     }
 
     void Awake()
@@ -55,8 +56,10 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     {
         if(hit && !passThrough)
         {
-            rb.drag = 2000f;
-            FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
+            //rb.drag = 2000f;
+            //Debug.Log("drag: " + rb.drag);
+            //FunctionTimer.Create(() => SetDrag(dragAmount), .2f);
+            rb.velocity = Vector2.zero;
             hit = false;
         }
         else if(hit && passThrough)
@@ -65,9 +68,10 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
             passThrough = false;
         }
 
-        if(rb.velocity.sqrMagnitude < .01f)
+        if(rb.velocity.sqrMagnitude < .5f)
         {
             isMoving = false;
+            rb.velocity = Vector2.zero;
         }
         else
         {
@@ -130,8 +134,11 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
                 if (KillOrder.KillCheck(collision.gameObject)) { EnemyKill(collision); }
                 else
                 {
-                    rb.drag = 2000f;
-                    FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
+                    //rb.drag = 2000f;
+                    //FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
+
+                    rb.velocity = Vector2.zero;
+
                     transform.position = playerSpawn.transform.position;
                 }
             }
@@ -149,8 +156,10 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         
         if(collision.gameObject.CompareTag("Toxic Gas"))
         {
-            rb.drag = 2000f;
-            FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
+            //rb.drag = 2000f;
+            //FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
+
+            rb.velocity = Vector2.zero;
 
             transform.position = playerSpawn.transform.position;
         }

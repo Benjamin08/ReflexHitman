@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3429799739704113869}
   - component: {fileID: 3429799739704113871}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player - Swipe
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
