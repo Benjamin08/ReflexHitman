@@ -19,7 +19,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     public float timer;
 
     [Range(.1f, 20f)]
-    public float dragAmount = 10f;
+    public float dragAmount;
 
     private Transform playerSpawn;
 

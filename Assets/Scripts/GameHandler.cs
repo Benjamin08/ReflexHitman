@@ -26,6 +26,8 @@ public class GameHandler : MonoBehaviour
 
     public Transform playerSpawn;
 
+    public GameObject[] playerTypes;
+
     public GameObject player;
 
     //public TouchTwo touchInput;
@@ -88,7 +90,14 @@ public class GameHandler : MonoBehaviour
 
         levelCompleteText.text = "Level Complete: " + levelPassed;
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        if(GameSettings.dragToMove)
+        {
+            player = playerTypes[0];
+        }
+        else
+        {
+            player = playerTypes[1];
+        }
 
         playerCollisionAndScoring = player.GetComponent<PlayerCollisionsAndScoring>();
 
@@ -156,6 +165,11 @@ public class GameHandler : MonoBehaviour
     {
         swipesLeft += swipesAdded;
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft.ToString();
+    }
+
+    public void SpawnPlayer()
+    {
+        Instantiate(player, playerSpawn.position, Quaternion.identity); 
     }
 
     private void Update()

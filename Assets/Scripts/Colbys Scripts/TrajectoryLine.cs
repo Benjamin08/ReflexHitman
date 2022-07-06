@@ -12,6 +12,11 @@ public class TrajectoryLine : MonoBehaviour
         lr = GetComponent<LineRenderer>();
     }
 
+    private void Start()
+    {
+        lr = GetComponent<LineRenderer>();
+    }
+
     public void RenderLine(Vector3 startPoint ,Vector3 endPoint)
     {
         lr.positionCount = 2;

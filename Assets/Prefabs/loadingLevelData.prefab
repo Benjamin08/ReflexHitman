@@ -43,3 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f67833d9f8a514791c35525bb1826c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyList: []
+  enemyArray: []
+  deadCount: 0
+  gameHandler: {fileID: 0}
+  playerTypes:
+  - {fileID: 3429799739704113864, guid: 9b04285ab1a0c5b44b44a48f7098e6e1, type: 3}
+  - {fileID: 3429799739704113864, guid: ee126b7d6e1fc5848afd26d27a8a739c, type: 3}
+  thisLevelData: {fileID: 0}

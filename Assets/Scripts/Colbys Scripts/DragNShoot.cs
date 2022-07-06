@@ -28,6 +28,11 @@ public class DragNShoot : MonoBehaviour
         cam = Camera.main;
         tl = GetComponent<TrajectoryLine>();
         playerCollisionScore = GetComponent<PlayerCollisionsAndScoring>();
+        rb = GetComponent<Rigidbody2D>();
+
+        minPower = new Vector2(-8,-8);
+        maxPower = new Vector2(8,8);
+        
     }
 
 
@@ -64,7 +69,7 @@ public class DragNShoot : MonoBehaviour
             {
                 startPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
                 startPoint.z = -5;
-                Debug.Log("start position: " + startPoint);
+                //Debug.Log("start position: " + startPoint);
             }
 
             if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && touchingPlayer)
@@ -78,12 +83,12 @@ public class DragNShoot : MonoBehaviour
             {
                 endPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
                 endPoint.z = 15;
-                //Debug.Log("end position: " + endPoint);
+                Debug.Log("end position: " + endPoint);
                 touchingPlayer = false;
                 playerCollisionScore.isMoving = true;
                     
                 force = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x,maxPower.x),Mathf.Clamp(startPoint.y - endPoint.y, minPower.y,maxPower.y));
-                //Debug.Log("force: " + force);
+                Debug.Log("force: " + force);
                 rb.AddForce(force * power, ForceMode2D.Impulse);
                 tl.EndLine();
             }

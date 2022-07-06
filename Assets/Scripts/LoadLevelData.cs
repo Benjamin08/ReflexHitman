@@ -21,7 +21,9 @@ public class LoadLevelData : MonoBehaviour
     public int deadCount = 0;
 
     public GameHandler gameHandler;
- 
+    
+    public GameObject[] playerTypes;
+
     public LevelData thisLevelData;
 
     // Start is called before the first frame update
@@ -33,7 +35,16 @@ public class LoadLevelData : MonoBehaviour
         enemyList = new List<GameObject>(enemyArray);
 
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
-        gameHandler.player = GameObject.FindGameObjectWithTag("Player");
+        
+        if(GameSettings.dragToMove)
+        {
+            gameHandler.player = playerTypes[0];
+        }
+        else
+        {
+            gameHandler.player = playerTypes[1];
+        }
+        
         gameHandler.levelTransitioner = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
         gameHandler.playerCollisionAndScoring = gameHandler.player.GetComponent<PlayerCollisionsAndScoring>();
         gameHandler.levelCompleteText = GameObject.Find("Level Complete Text").GetComponent<Text>();
@@ -52,9 +63,18 @@ public class LoadLevelData : MonoBehaviour
 
         if(gameHandler.currentLevel != 0)
         {
-            gameHandler.player.GetComponent<TouchTwo>().OnSwipeDone += gameHandler.EndOfSwipe;
+            if(GameSettings.dragToMove)
+            {
+                //gameHandler.player.GetComponent<DragNShoot>().OnSwipeDone += gameHandler.EndOfSwipe;
+            }
+            else
+            {
+                gameHandler.player.GetComponent<TouchTwo>().OnSwipeDone += gameHandler.EndOfSwipe;
+            }
         }
         
+        gameHandler.SpawnPlayer();
+
         gameHandler.SetText();
 
         CMDebug.ButtonUI(new Vector2(300, -500), "Reset", () => gameHandler.ResetGame());
