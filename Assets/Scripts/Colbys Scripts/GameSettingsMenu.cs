@@ -17,7 +17,16 @@ public class GameSettingsMenu : MonoBehaviour
     }
     public void touchPlayerToMove(bool p_touchPlayerToMove)
     {
-        GameSettings.touchPlayerToMove = p_touchPlayerToMove;
+        if(playerMoveToggle.isOn)
+        {
+            GameSettings.touchPlayerToMove = !p_touchPlayerToMove;
+        }
+        else
+        {
+            GameSettings.touchPlayerToMove = p_touchPlayerToMove;
+        }
+
+        Debug.Log("GameSettingMenu Drag to Move: " + GameSettings.dragToMove);
     }
 
     public void dragToMove(bool p_dragToMove)
