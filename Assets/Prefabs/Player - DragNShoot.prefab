@@ -231,6 +231,7 @@ MonoBehaviour:
   minPower: {x: -5, y: -5}
   maxPower: {x: 5, y: 5}
   touchingPlayer: 0
+  invertDrag: 0
 --- !u!114 &3429799739704113869
 MonoBehaviour:
   m_ObjectHideFlags: 0

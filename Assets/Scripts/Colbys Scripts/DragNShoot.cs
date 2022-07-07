@@ -12,7 +12,8 @@ public class DragNShoot : MonoBehaviour
     public Vector2 maxPower;
 
     public bool touchingPlayer;
-    
+    public bool invertDrag;
+
     Camera cam;
 
     Vector2 force;
@@ -86,7 +87,17 @@ public class DragNShoot : MonoBehaviour
                     
                 force = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x,maxPower.x),Mathf.Clamp(startPoint.y - endPoint.y, minPower.y,maxPower.y));
                 Debug.Log("force: " + force);
-                rb.AddForce(force * power, ForceMode2D.Impulse);
+                
+                if(invertDrag)
+                {
+                    rb.AddForce(force * power, ForceMode2D.Impulse);
+                }
+                else
+                {
+                    rb.AddForce(-force * power, ForceMode2D.Impulse);
+                }
+
+
                 tl.EndLine();
             }
         }    
