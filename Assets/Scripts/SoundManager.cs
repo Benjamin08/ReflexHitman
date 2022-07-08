@@ -7,8 +7,6 @@ public static class SoundManager
     public enum Sound
     {
         playerMove,
-        playerMove2,
-        playerMove3,
         playerHurt,
         enemyHurt1,
         enemyHurt2,

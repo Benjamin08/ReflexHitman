@@ -44,16 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundAudioClipArray:
-  - sound: 4
-    audioClip: {fileID: 8300000, guid: 60404f4971c932a40919d06d926ae356, type: 3}
-  - sound: 5
-    audioClip: {fileID: 8300000, guid: 35506834c2d0fe54b84a4f422f28090e, type: 3}
-  - sound: 6
-    audioClip: {fileID: 8300000, guid: cf693a49982d8b2458065fb0d9b56d60, type: 3}
-  - sound: 0
-    audioClip: {fileID: 8300000, guid: a7646b07b5278fb448d13938db92ae93, type: 3}
-  - sound: 1
-    audioClip: {fileID: 8300000, guid: 04b77cda772648b459e7e283b1753aa7, type: 3}
   - sound: 2
-    audioClip: {fileID: 8300000, guid: d93180373fac3ee498e0430408d4df6c, type: 3}
+    audioClip: {fileID: 8300000, guid: c1354ea34af5fa541b5c8df4f7639a80, type: 3}
+  - sound: 3
+    audioClip: {fileID: 8300000, guid: fd317d669a6ab6c44baf7d239d0ca9ae, type: 3}
+  - sound: 4
+    audioClip: {fileID: 8300000, guid: 8b7f25997df41974991677e6b41887c3, type: 3}
+  - sound: 5
+    audioClip: {fileID: 8300000, guid: 13b013ed966d31b4786f9d3b5acc90f8, type: 3}
+  - sound: 5
+    audioClip: {fileID: 8300000, guid: 13b013ed966d31b4786f9d3b5acc90f8, type: 3}
   soundAudioMusicArray: []
