@@ -228,8 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 18
   rb: {fileID: 0}
-  minPower: {x: -5, y: -5}
-  maxPower: {x: 5, y: 5}
+  powerLevel: 10
   touchingPlayer: 0
   invertDrag: 0
 --- !u!114 &3429799739704113869

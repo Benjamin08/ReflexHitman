@@ -148,6 +148,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
             {
                 gameHandler.levelPassed = true;
                 gameHandler.SetText();
+                //gameHandler.
                 FunctionTimer.Create(() => gameHandler.NextLevel(), 1f);
             }
      
