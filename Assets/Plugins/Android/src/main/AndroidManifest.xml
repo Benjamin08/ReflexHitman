@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.unityandroid">
+
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application>
+
+        <activity
+            android:name="com.instabug.bug.view.BugReportingActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/InstabugSdkTheme"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <data android:scheme="instabug-bug" android:host="instabug-disclaimer.com"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.instabug.bug.network.InstabugBugsUploaderService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.instabug.bug.view.actionList.service.ReportCategoriesService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <activity
+            android:name="com.instabug.chat.ui.ChatActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/InstabugSdkTheme"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <service android:name="com.instabug.chat.network.InstabugMessageUploaderService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.instabug.chat.network.InstabugPushNotificationTokenService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <service android:name="com.instabug.library.network.worker.uploader.InstabugSessionUploaderService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.instabug.library.internal.video.VideoProcessingService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.instabug.library.analytics.network.InstabugAnalyticsUploaderService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <activity
+            android:name="com.instabug.library.internal.video.RequestPermissionActivity" />
+        <activity
+            android:name="com.instabug.library.invocation.invocationdialog.InstabugDialogActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/InstabugTranslucentSdkTheme" />
+
+        <activity
+            android:name="com.instabug.library.ui.onboarding.OnboardingActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/InstabugTranslucentSdkTheme" />
+
+        <service android:name="com.instabug.library.internal.video.AutoScreenRecordingService" />
+
+        <service android:name="com.instabug.crash.network.InstabugCrashesUploaderService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <activity
+            android:name="com.instabug.featuresrequest.ui.FeaturesRequestActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <service android:name="com.instabug.featuresrequest.network.service.FeaturesRequestVoteService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.instabug.featuresrequest.network.service.AddNewFeatureUploaderService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <activity
+            android:name="com.instabug.survey.ui.SurveyActivity"
+            android:theme="@style/InstabugTranslucentSdkTheme"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <service android:name="com.instabug.survey.network.service.InstabugSurveysSubmitterService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+
+
+    </application>
+
+
+</manifest>
+

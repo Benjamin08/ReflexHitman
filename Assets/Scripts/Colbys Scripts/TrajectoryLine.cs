@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 [RequireComponent(typeof(LineRenderer))]
 public class TrajectoryLine : MonoBehaviour
 {
     public LineRenderer lr;
-
+    Vector3[] points = new Vector3[2];
+    
      private void awake()
     {
         lr = GetComponent<LineRenderer>();
@@ -21,7 +24,7 @@ public class TrajectoryLine : MonoBehaviour
     {
         lr.positionCount = 2;
 
-        Vector3[] points = new Vector3[2];
+        
 
         points[0] = startPoint;
         points[1] = endPoint;
@@ -32,6 +35,7 @@ public class TrajectoryLine : MonoBehaviour
     public void EndLine()
     {
         lr.positionCount = 0;
+        Array.Clear(points,0,1);
     }
 
 }

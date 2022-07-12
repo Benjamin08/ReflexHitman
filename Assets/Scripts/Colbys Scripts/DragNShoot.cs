@@ -10,7 +10,6 @@ public class DragNShoot : MonoBehaviour
     public Rigidbody2D rb;
 
     public int powerLevel;
-    public int numberOfTimesTouched = 0;
 
     public bool touchingPlayer;
     public bool invertDrag;
@@ -76,7 +75,7 @@ public class DragNShoot : MonoBehaviour
 
 
 
-            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && touchingPlayer)
+            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && touchingPlayer && !playerCollisionScore.isMoving)
             {
                 startPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
                 startPoint.z = -5;
@@ -119,7 +118,6 @@ public class DragNShoot : MonoBehaviour
                 {
                     rb.AddForce(-force * power, ForceMode2D.Impulse);
                 }
-
 
                 tl.EndLine();
                 playerCollisionScore.gameHandler.swipesLeft--;
