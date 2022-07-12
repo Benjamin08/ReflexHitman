@@ -14,6 +14,10 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     public bool passThrough = false;
 
     private int counter = 0;
+
+    public int currentLevel = 0;
+    public int numberOfTimesTouched = 0;
+    
     //private int counter2 = 0;
     Vector3 holdVelocity;
     public float timer;
@@ -24,6 +28,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
     private Transform playerSpawn;
 
     public LoadLevelData loadLevelData;
+
+    public LevelLoader levelLoader;
 
     public GameHandler gameHandler;
 
@@ -41,6 +47,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         playerSpawn = GameObject.FindGameObjectWithTag("Player Spawn").transform;
         rb = GetComponent<Rigidbody2D>();
         loadLevelData = GameObject.FindGameObjectWithTag("loadLevelData").GetComponent<LoadLevelData>();
+        levelLoader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
         camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
         rb.drag = dragAmount;
@@ -149,6 +156,13 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
                 gameHandler.levelPassed = true;
                 gameHandler.SetText();
                 //gameHandler.
+                
+                Debug.Log("playerCollisionScore   numberOfTimesTouched = " + numberOfTimesTouched);
+                levelLoader.CalculateStars(numberOfTimesTouched);
+                
+
+
+
                 FunctionTimer.Create(() => gameHandler.NextLevel(), 1f);
             }
      
@@ -169,6 +183,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         {
             Destroy(collision.gameObject);
             gameHandler.AddSwipe(1);
+            numberOfTimesTouched--;
+            
             SoundManager.PlaySound(SoundManager.Sound.powerup_swipe);
         }
         if(collision.gameObject.CompareTag("PassThroughPowerup"))

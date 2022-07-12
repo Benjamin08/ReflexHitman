@@ -228,7 +228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 18
   rb: {fileID: 0}
-  powerLevel: 10
+  powerLevel: 5
+  numberOfTimesTouched: 0
   touchingPlayer: 0
   invertDrag: 0
 --- !u!114 &3429799739704113869
@@ -246,9 +247,12 @@ MonoBehaviour:
   rb: {fileID: 0}
   hit: 0
   passThrough: 0
+  currentLevel: 0
+  numberOfTimesTouched: 0
   timer: 3
   dragAmount: 1.18
   loadLevelData: {fileID: 0}
+  levelLoader: {fileID: 0}
   gameHandler: {fileID: 0}
   camShake: {fileID: 0}
   KillOrder: {fileID: 0}

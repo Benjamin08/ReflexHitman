@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e90517ae21f75c4da370c8012c77b5e, type: 3}
   m_Name: Bouncy_1
   m_EditorClassIdentifier: 
-  maxNumberOfSwipes: 5
-  oneStarSwipeAmount: 5
-  twoStarSwipeAmount: 4
-  threeStarSwipeAmount: 3
+  maxNumberOfSwipes: 6
+  oneStarSwipeAmount: 6
+  twoStarSwipeAmount: 5
+  threeStarSwipeAmount: 4
   levelPassed: 0

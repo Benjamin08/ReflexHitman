@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/1_1 - DragToShoot.unity
     guid: 8554c7e5e8643404a8704f9ba7113909
   - enabled: 1
+    path: Assets/Scenes/Star.unity
+    guid: 49592519d4553a449b90b1475797de0d
+  - enabled: 1
     path: Assets/Scenes/1_2.unity
     guid: 04ea1cc12b7242d48959d33620c1fb1c
   - enabled: 1
@@ -26,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Door Scene.unity
     guid: 282529f8b2ba68d4c97e6993501349de
-  - enabled: 1
-    path: Assets/Scenes/Star.unity
-    guid: 49592519d4553a449b90b1475797de0d
   - enabled: 1
     path: Assets/Scenes/Toxic_1.unity
     guid: 68042cc5912431448b784de789d36111
@@ -44,7 +44,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Testing Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/1_1.unity
     guid: 976fefd83d2fb4648ab962c82aa70773
   m_configObjects: {}

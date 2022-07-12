@@ -29,7 +29,7 @@ public class LoadLevelData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Color newColor = new Color(0.3f, 0.4f, 0.6f, 0.3f);
         deadCount = 0;
         enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
         enemyList = new List<GameObject>(enemyArray);
@@ -77,11 +77,13 @@ public class LoadLevelData : MonoBehaviour
 
         gameHandler.SetText();
 
-        CMDebug.ButtonUI(new Vector2(300, -500), "Reset", () => gameHandler.ResetGame());
+        //CMDebug.ButtonUI(new Vector2(300, -500),new Vector2(300,300), () => gameHandler.ResetGame());
 
-        CMDebug.ButtonUI(new Vector2(300, 0), "Next Level", () => gameHandler.NextLevel());
+        //CMDebug.ButtonUI(new Vector2(300, -500), new Vector2(300,300), "Reset", () => gameHandler.ResetGame());
 
-        CMDebug.ButtonUI(new Vector2(300, -250), "Last Level", () => gameHandler.LastLevel());
+        //CMDebug.ButtonUI(new Vector2(300, 0), "Next Level", () => gameHandler.NextLevel());
+
+        //CMDebug.ButtonUI(new Vector2(300, -250), "Last Level", () => gameHandler.LastLevel());
 
     if(gameHandler.currentLevel == 0)
     {

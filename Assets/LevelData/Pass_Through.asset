@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e90517ae21f75c4da370c8012c77b5e, type: 3}
-  m_Name: NicksTestData
+  m_Name: Pass_Through
   m_EditorClassIdentifier: 
-  maxNumberOfSwipes: 99
-  oneStarSwipeAmount: 7
-  twoStarSwipeAmount: 6
-  threeStarSwipeAmount: 5
+  maxNumberOfSwipes: 4
+  oneStarSwipeAmount: 4
+  twoStarSwipeAmount: 2
+  threeStarSwipeAmount: 1
   levelPassed: 0

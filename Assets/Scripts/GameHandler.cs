@@ -101,6 +101,8 @@ public class GameHandler : MonoBehaviour
 
         playerCollisionAndScoring = player.GetComponent<PlayerCollisionsAndScoring>();
 
+        playerCollisionAndScoring.rb = player.GetComponent<Rigidbody2D>();
+        
         //touchInput = player.GetComponent<TouchTwo>();
 
         //touchInput.OnSwipeDone += EndOfSwipe;
@@ -112,7 +114,7 @@ public class GameHandler : MonoBehaviour
 
     public void NextLevel()
     {
-        Debug.Log("Next Level");
+        Debug.Log("Next Level " + playerCollisionAndScoring.numberOfTimesTouched);
         levelTransitioner.LoadNextLevel();
         //touchInput.numberOfTimesTouched = 0;
         currentLevel++;

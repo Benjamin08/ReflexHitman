@@ -17,12 +17,14 @@ public class LevelLoader : MonoBehaviour
 
     public GameObject ColbyDisplay;
 
+    
     void Start()
     {
 
 
         gameHandler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
 
+        
 
         Debug.Log("SceneManager.sceneCountInBuildSettings " + SceneManager.sceneCountInBuildSettings);
     }
@@ -56,6 +58,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadNextLevel()
     {
         //StartCoroutine(ReloadLevelCoroutine(SceneManager.GetActiveScene().buildIndex + 1));
+        //Debug.Log("gameHandler.playerCollisionAndScoring.numberOfTimesTouched " +gameHandler.playerCollisionAndScoring.numberOfTimesTouched);
         StartCoroutine(ShowLevelDisplay());
         
     }
@@ -98,10 +101,9 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator ShowLevelDisplay()
     {
+        
+        //CalculateStars();
         transition.SetTrigger("Start");
-
-       // CalculateStars();
-
         yield return new WaitForSeconds(transitionTime);
         //return null;
     }
@@ -119,16 +121,19 @@ public class LevelLoader : MonoBehaviour
 
     }
 
-   /* private void CalculateStars()
+    public void CalculateStars(int shotsUsed)
     {
-        if(gameHandler.touchInput.numberOfTimesTouched <= gameHandler.loadLevelData.thisLevelData.threeStarSwipeAmount)
+
+        
+        if(shotsUsed <= gameHandler.loadLevelData.thisLevelData.threeStarSwipeAmount)
         {
             // 3 
+           // Debug.Log("gameHandler.playerCollisionAndScoring.numberOfTimesTouched " +gameHandler.playerCollisionAndScoring.numberOfTimesTouched);
             Debug.Log("3 star");
             ShowStars(3);
             return;
         }
-        else if(gameHandler.touchInput.numberOfTimesTouched <= gameHandler.loadLevelData.thisLevelData.twoStarSwipeAmount)
+        else if(shotsUsed <= gameHandler.loadLevelData.thisLevelData.twoStarSwipeAmount)
         {
             // 2 STARS
             Debug.Log("2 Star");
@@ -146,5 +151,5 @@ public class LevelLoader : MonoBehaviour
         
 
     }
-    */
+    
 }

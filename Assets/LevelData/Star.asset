@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Star
   m_EditorClassIdentifier: 
   maxNumberOfSwipes: 6
-  oneStarSwipeAmount: 6
-  twoStarSwipeAmount: 3
-  threeStarSwipeAmount: 2
+  oneStarSwipeAmount: 5
+  twoStarSwipeAmount: 4
+  threeStarSwipeAmount: 1
   levelPassed: 0

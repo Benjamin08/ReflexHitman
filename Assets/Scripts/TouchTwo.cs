@@ -32,13 +32,13 @@ public class TouchTwo : MonoBehaviour
     {
         playerCollisionScore = GetComponent<PlayerCollisionsAndScoring>();
         OnSwipeDone += SwipeDone;
+        
     }
 
     private void SwipeDone(object sender, EventArgs e)
     {
        
-        
-        numberOfTimesTouched++;
+        playerCollisionScore.numberOfTimesTouched++;
         
         GetComponent<Rigidbody2D>().AddForce(-direction / timeInterval * throwForce);
     
@@ -91,10 +91,11 @@ public class TouchTwo : MonoBehaviour
                 touchTimeFinish = Time.time;
                 timeInterval = touchTimeFinish - touchTimeStart;
                 swipeLength = Vector2.Distance(startPos, endPos);
-
+                playerCollisionScore.gameHandler.swipesLeft--;
+                playerCollisionScore.gameHandler.numberOfSwipesText.text = "Number Of Swipes: " + playerCollisionScore.gameHandler.swipesLeft.ToString();
 
                
-                if(swipeLength > 20 && playerCollisionScore.gameHandler.swipesLeft > 0 && touchingPlayer)
+                if(swipeLength > 20 && playerCollisionScore.gameHandler.swipesLeft >= 0 && touchingPlayer)
                 {
                     OnSwipeDone?.Invoke(this, EventArgs.Empty);         // If our event is not null, then we invoke the event
                 }

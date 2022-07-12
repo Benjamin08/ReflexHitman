@@ -5,10 +5,12 @@ using UnityEngine;
 public class DragNShoot : MonoBehaviour
 {
    
+
     public float power = 100f;
     public Rigidbody2D rb;
 
     public int powerLevel;
+    public int numberOfTimesTouched = 0;
 
     public bool touchingPlayer;
     public bool invertDrag;
@@ -43,6 +45,7 @@ public class DragNShoot : MonoBehaviour
 
     
     }
+
 
     private void Update()
     {
@@ -93,9 +96,18 @@ public class DragNShoot : MonoBehaviour
                 endPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
                 endPoint.z = -5;
                 //Debug.Log("end position: " + endPoint);
+
+                playerCollisionScore.numberOfTimesTouched++;
+
+
+
+                //Debug.Log("playerCollisionScore.numberOfTimesTouched = " + playerCollisionScore.numberOfTimesTouched);
+
+
                 touchingPlayer = false;
                 playerCollisionScore.isMoving = true;
-                    
+                
+
                 force = CalculatePowerVectorV2(startPoint,endPoint);
                 Debug.Log("force: " + force);
                 
@@ -110,6 +122,8 @@ public class DragNShoot : MonoBehaviour
 
 
                 tl.EndLine();
+                playerCollisionScore.gameHandler.swipesLeft--;
+                playerCollisionScore.gameHandler.numberOfSwipesText.text = "Number Of Swipes: " + playerCollisionScore.gameHandler.swipesLeft.ToString();
             }
         }    
     }

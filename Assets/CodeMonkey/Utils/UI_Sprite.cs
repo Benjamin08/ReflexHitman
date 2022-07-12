@@ -29,6 +29,7 @@ namespace CodeMonkey.Utils {
             return CreateDebugButton(anchoredPosition, size, ClickFunc, Color.green);
         }
 
+
         public static UI_Sprite CreateDebugButton(Vector2 anchoredPosition, Vector2 size, Action ClickFunc, Color color) {
             UI_Sprite uiSprite = new UI_Sprite(GetCanvasTransform(), Assets.i.s_White, anchoredPosition, size, color);
             uiSprite.AddButton(ClickFunc, null, null);
@@ -81,7 +82,6 @@ namespace CodeMonkey.Utils {
             return uiSprite;
         }
         
-
 
         public GameObject gameObject;
         public Image image;
