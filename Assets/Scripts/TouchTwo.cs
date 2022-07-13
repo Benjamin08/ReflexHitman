@@ -92,9 +92,9 @@ public class TouchTwo : MonoBehaviour
                 timeInterval = touchTimeFinish - touchTimeStart;
                 swipeLength = Vector2.Distance(startPos, endPos);
 
+                SoundManager.PlayerMoveSound(startPos);
 
-               
-                if(swipeLength > 20 && playerCollisionScore.gameHandler.swipesLeft > 0 && touchingPlayer)
+                if (swipeLength > 20 && playerCollisionScore.gameHandler.swipesLeft > 0 && touchingPlayer)
                 {
                     OnSwipeDone?.Invoke(this, EventArgs.Empty);         // If our event is not null, then we invoke the event
                 }

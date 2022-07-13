@@ -98,8 +98,10 @@ public class DragNShoot : MonoBehaviour
                     
                 force = CalculatePowerVectorV2(startPoint,endPoint);
                 Debug.Log("force: " + force);
-                
-                if(invertDrag)
+
+                SoundManager.PlayerMoveSound(transform.position);
+
+                if (invertDrag)
                 {
                     rb.AddForce(force * power, ForceMode2D.Impulse);
                 }

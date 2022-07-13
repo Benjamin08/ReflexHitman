@@ -14,7 +14,7 @@ public static class SoundManager
         enemyHurt2,
         enemyHurt3,
         powerup_swipe,
-
+        button,
     }
 
     private static GameObject oneShotGameObject;
@@ -58,6 +58,29 @@ public static class SoundManager
                         return true;
                     }
                // break;
+        }
+    }
+
+    public static void PlayerMoveSound(Vector3 pos)
+    {
+        int randNumber = UnityEngine.Random.Range(0, 2);
+        switch (randNumber)
+        {
+            case 0:
+                SoundManager.PlaySound(SoundManager.Sound.playerMove, pos);
+                break;
+
+            case 1:
+                SoundManager.PlaySound(SoundManager.Sound.playerMove2, pos);
+                break;
+
+            case 2:
+                SoundManager.PlaySound(SoundManager.Sound.playerMove3, pos);
+                break;
+
+            default:
+
+                break;
         }
     }
 
