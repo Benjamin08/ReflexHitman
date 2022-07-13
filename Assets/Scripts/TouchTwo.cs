@@ -94,6 +94,7 @@ public class TouchTwo : MonoBehaviour
                 playerCollisionScore.gameHandler.swipesLeft--;
                 playerCollisionScore.gameHandler.numberOfSwipesText.text = "Number Of Swipes: " + playerCollisionScore.gameHandler.swipesLeft.ToString();
 
+               SoundManager.PlayerMoveSound(startPos);
                
                 if(swipeLength > 20 && playerCollisionScore.gameHandler.swipesLeft >= 0 && touchingPlayer)
                 {
