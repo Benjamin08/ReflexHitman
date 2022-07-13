@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DragNShoot : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class DragNShoot : MonoBehaviour
     Vector3 startPoint;
     Vector3 endPoint;
 
+    Collider2D[] hitInfo;
     TrajectoryLine tl;
     PlayerCollisionsAndScoring playerCollisionScore;
 
@@ -52,34 +54,34 @@ public class DragNShoot : MonoBehaviour
         if(Input.touchCount > 0 && playerCollisionScore.isMoving == false)
         {
 
-            RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
+
+            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !playerCollisionScore.isMoving)
+            {
+                hitInfo = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position));
             
-            if(hitInfo.collider != null && GameSettings.touchPlayerToMove)
-            {
-                
-                //Debug.Log("hit: " + hitInfo.collider.name);
-                switch(hitInfo.collider.tag)
-                {
+                    foreach (Collider2D i in hitInfo)
+                    {
+                        if( i != null && GameSettings.touchPlayerToMove)
+                        {
+                            switch(i.tag)
+                            {
 
-                  case "Player" :
-                      //Debug.Log("hit player");
-                       touchingPlayer = true;
-                       break;
+                                case "Player" :
+                                Debug.Log("touchingPlayer is true");
+                                touchingPlayer = true;
+                                break;
 
-                }
-            }
-            else if(!GameSettings.touchPlayerToMove)
-            {
-                touchingPlayer = true;
-            }
+                            }       
+                        }
+                        else if(!GameSettings.touchPlayerToMove)
+                        {
+                            touchingPlayer = true;
+                        }
+                    }
 
-
-
-            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && touchingPlayer && !playerCollisionScore.isMoving)
-            {
                 startPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
                 startPoint.z = -5;
-                //Debug.Log("start position: " + startPoint);
+                
             }
 
             if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && touchingPlayer)
@@ -94,18 +96,16 @@ public class DragNShoot : MonoBehaviour
             {
                 endPoint = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
                 endPoint.z = -5;
-                //Debug.Log("end position: " + endPoint);
+              
 
                 playerCollisionScore.numberOfTimesTouched++;
 
 
-
-                //Debug.Log("playerCollisionScore.numberOfTimesTouched = " + playerCollisionScore.numberOfTimesTouched);
-
-
+                Debug.Log("touchingPlayer is false");
                 touchingPlayer = false;
                 playerCollisionScore.isMoving = true;
-                
+
+                Array.Clear(hitInfo,0,hitInfo.Length);
 
                 force = CalculatePowerVectorV2(startPoint,endPoint);
                 Debug.Log("force: " + force);
@@ -123,6 +123,8 @@ public class DragNShoot : MonoBehaviour
                 playerCollisionScore.gameHandler.swipesLeft--;
                 playerCollisionScore.gameHandler.numberOfSwipesText.text = "Number Of Swipes: " + playerCollisionScore.gameHandler.swipesLeft.ToString();
             }
-        }    
+        }  
+
+
     }
 }

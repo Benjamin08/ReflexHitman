@@ -24,7 +24,7 @@ public class TrajectoryLine : MonoBehaviour
     {
         lr.positionCount = 2;
 
-        
+        //Debug.Log("points: " + points[0] + " " + points[1]);
 
         points[0] = startPoint;
         points[1] = endPoint;
@@ -35,7 +35,8 @@ public class TrajectoryLine : MonoBehaviour
     public void EndLine()
     {
         lr.positionCount = 0;
-        Array.Clear(points,0,1);
+        Array.Clear(points, 0, points.Length);
+        
     }
 
 }
