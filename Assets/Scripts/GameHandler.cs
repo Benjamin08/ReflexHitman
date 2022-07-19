@@ -109,6 +109,8 @@ public class GameHandler : MonoBehaviour
 
         playerSpawn = GameObject.FindGameObjectWithTag("Player Spawn").transform;
 
+        SoundManager.Initialize();
+
     }
 
 
