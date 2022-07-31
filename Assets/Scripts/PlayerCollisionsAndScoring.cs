@@ -35,11 +35,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
 
     public CameraShake camShake;
 
-    public KillOrderHandler KillOrder;
-
     public bool isMoving = true;
 
-    public bool EnableKillOrder = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,10 +50,7 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
         rb.drag = dragAmount;
     }
 
-    void Awake()
-    {
-        if (EnableKillOrder) { KillOrder = GameObject.Find("KillOrder").GetComponent<KillOrderHandler>(); }
-    }
+ 
 
     // Update is called once per frame
     void Update()
@@ -135,21 +129,8 @@ public class PlayerCollisionsAndScoring : MonoBehaviour
 
             StartCoroutine(camShake.Shake(.2f, .4f));
             
-            //Kill order check
-            if (collision.GetComponent<Enemy>().isOrdered && EnableKillOrder)
-            {
-                if (KillOrder.KillCheck(collision.gameObject)) { EnemyKill(collision); }
-                else
-                {
-                    //rb.drag = 2000f;
-                    //FunctionTimer.Create(() => SetDrag(dragAmount), 2f);
-
-                    rb.velocity = Vector2.zero;
-
-                    transform.position = playerSpawn.transform.position;
-                }
-            }
-            else { EnemyKill(collision); }
+            
+            EnemyKill(collision);
            
             if(loadLevelData.deadCount.Equals(loadLevelData.enemyList.Count))
             {
