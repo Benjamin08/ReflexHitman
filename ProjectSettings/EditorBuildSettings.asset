@@ -15,6 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/1_1 - DragToShoot.unity
     guid: 8554c7e5e8643404a8704f9ba7113909
   - enabled: 1
+    path: Assets/Scenes/Hour Glass.unity
+    guid: ce3f362cc521b0143bcedfdc15fc3066
+  - enabled: 1
+    path: Assets/Scenes/Blocking Boxes.unity
+    guid: df606076f898966449f960d29efd5d8c
+  - enabled: 1
+    path: Assets/Scenes/Spinner.unity
+    guid: 442dc266e0ad2bf4aa3c18ef9b94a5c5
+  - enabled: 1
     path: Assets/Scenes/1_2.unity
     guid: 04ea1cc12b7242d48959d33620c1fb1c
   - enabled: 1
