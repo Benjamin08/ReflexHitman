@@ -13,6 +13,8 @@ public class GameHandler : MonoBehaviour
     public Text numberOfSwipesText;
     public Text levelCompleteText;
 
+    public Text touchText;
+
     public int currentLevel = 0;
 
     public int swipesLeft;
@@ -85,6 +87,8 @@ public class GameHandler : MonoBehaviour
         numberOfSwipesText = GameObject.Find("Number Of Swipes").GetComponent<Text>();
 
         levelCompleteText = GameObject.Find("Level Complete Text").GetComponent<Text>();
+
+        touchText = GameObject.Find("Touchs").GetComponent<Text>();
 
         numberOfSwipesText.text = "Number Of Swipes: " + swipesLeft;
 
@@ -189,6 +193,8 @@ public class GameHandler : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        touchText.text = "Touchs: " + camera.GetNumberOfTouches();
     }
 
 }
